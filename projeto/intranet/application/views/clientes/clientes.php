@@ -1,5 +1,8 @@
-<a href="<?php echo base_url();?>index.php/clientes/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Adicionar Cliente</a>
-<a href="<?php echo base_url();?>index.php/clientes/desativados" class="btn btn-link"><i class="icon-plus icon-white"></i> Clientes desativados</a>
+<a href="<?php echo base_url();?>index.php/clientes/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Cadastrar Novo Cliente</a>
+<a href="<?php echo base_url();?>index.php/clientes/desativados" class="btn btn-link"> Clientes Desativados</a>
+
+<a href="<?php echo base_url()?>index.php/relatorios/clientes" class="btn btn-success" style="float:right;">Relatório</a>
+
 <?php
 if(!$results){?>
 

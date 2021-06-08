@@ -37,7 +37,7 @@ if (isset($_POST['fecharCaixa'])) {
 
 
 <!--Action boxes-->
-	<div class="alert alert-success">
+<!--	<div class="alert alert-success">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<?php $caixa = mysql_query("SELECT id FROM caixa ORDER BY id DESC LIMIT 1");
 				while($ln = mysql_fetch_array($caixa)){
@@ -45,9 +45,10 @@ if (isset($_POST['fecharCaixa'])) {
 				echo "O caixa Nº <b>#".$id_caixa."</b> está aberto.";
 			}?>
 	</div>
-	
+-->
+<!--
 <a href="#modalFecharCaixa" id="FecharCaixa" data-toggle="modal" role="button" class="btn btn-link tip-bottom" title="Fechar Caixa" style="position: absolute;top:3px;right:10px;"><i class="icon-plus icon-white"></i> Fechar Caixa</a>
-
+-->
 <!--			
   <div class="container-fluid">
     <div class="quick-actions_homepage">
@@ -194,7 +195,7 @@ if ($mesatual == "12"){$essemes = 'dez';};
     <thead>
         <tr style="backgroud-color: #2D335B">
             <th>Tipo</th>
-            <th>Aluno / Fornecedor</th>
+            <th>Fornecedor</th>
             <th>Vencimento</th>
             <th>Status</th>
             <th>Valor</th>

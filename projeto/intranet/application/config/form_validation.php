@@ -278,18 +278,28 @@ $config = array('clientes' => array(array(
                                 array(
                                     'field'=>'vencimento',
                                     'label'=>'Data Vencimento',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                         
                                 array(
-                                    'field'=>'cliente',
+                                    'field'=>'clientePagamento',
                                     'label'=>'Cliente',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
-                                    'field'=>'servico',
+                                    'field'=>'servicoPagamento',
                                     'label'=>'Equipe',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'idServicoPagamento',
+                                    'label'=>'equipe',
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'clientes_idPagamento',
+                                    'label'=>'cliente',
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'tipo',
@@ -353,7 +363,27 @@ $config = array('clientes' => array(array(
                                 array(
                                     'field'=>'fornecedor',
                                     'label'=>'Fornecedor',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'clienteDesconto',
+                                    'label'=>'Cliente',
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'servicoDesconto',
+                                    'label'=>'Equipe',
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'idServicoDesconto',
+                                    'label'=>'equipe',
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'clientes_idDesconto',
+                                    'label'=>'cliente',
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'tipo',

@@ -34,13 +34,13 @@
                         <label for="diaJogo" class="control-label">Dia de Jogo</label>
                         <div class="controls">
                             <select name="diaJogo" id="diaJogo" value="<?php echo set_value('diaJogo'); ?>">
-		    			        <option value="SEGUNDA-FEIRA">SEGUNDA-FEIRA</option>
-		    			        <option value="TERÇA-FEIRA">TERÇA-FEIRA</option>			
-		    			        <option value="QUARTA-FEIRA">QUARTA-FEIRA</option>			
-		    			        <option value="QUINTA-FEIRA">QUINTA-FEIRA</option>			
-		    			        <option value="SEXTA-FEIRA">SEXTA-FEIRA</option>			
-		    			        <option value="SÁBADO">SÁBADO</option>			
-		    			        <option value="DOMINGO">DOMINGO</option>			
+		    			        <option value="SEGUNDA-FEIRA">1. SEGUNDA-FEIRA</option>
+		    			        <option value="TERÇA-FEIRA">2. TERÇA-FEIRA</option>			
+		    			        <option value="QUARTA-FEIRA">3. QUARTA-FEIRA</option>			
+		    			        <option value="QUINTA-FEIRA">4. QUINTA-FEIRA</option>			
+		    			        <option value="SEXTA-FEIRA">5. SEXTA-FEIRA</option>			
+		    			        <option value="SÁBADO">6. SÁBADO</option>			
+		    			        <option value="DOMINGO">7. DOMINGO</option>			
 		    		        </select>
                         </div>
                     </div>

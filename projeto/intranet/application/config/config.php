@@ -14,7 +14,10 @@
 | path to your installation.
 |
 */
+
 $config['base_url']	= 'https://porcelanaball.com/intranet/';
+
+/*$config['base_url']	= 'https://aespina.com/porcelanaball/';*/
 
 /*
 |--------------------------------------------------------------------------
