@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'mysql.porcelanaball.com';
-$db['default']['username'] = 'porcelanaball';
-$db['default']['password'] = 'sg1979andre';
-$db['default']['database'] = 'porcelanaball';
+$db['default']['hostname'] = 'mysql.aespina.com';
+$db['default']['username'] = 'aespina08';
+$db['default']['password'] = 'Sg1979Andre';
+$db['default']['database'] = 'aespina08';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

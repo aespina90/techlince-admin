@@ -10,7 +10,7 @@ class Mensalidades extends CI_Controller {
 
         $this->load->helper(array('form', 'codegen_helper'));
         $this->load->model('mensalidades_model', '', TRUE);
-        $this->data['menuMensalidades'] = 'Mensalidades';
+        $this->data['menuQuadra'] = 'Mensalidades';
     }
 
     function index(){

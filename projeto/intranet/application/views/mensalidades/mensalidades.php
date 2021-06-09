@@ -272,13 +272,37 @@ if ($mesatual == "12" &&  $diaatual >= 21  ){
 	}
 ?>
 
+<div class="row-fluid" style="margin-top: 0">
+
+    <div class="span12">
+        
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"><i class="icon-signal"></i></span><h5>ESTATÍSTICAS</h5></div>
+            <div class="widget-content">
+                <div class="row-fluid">           
+                    <div class="span12">
+                        <ul class="site-stats">
+                            <li class="bg_lh"><i class="icon-user"></i> <strong><?php echo $this->db->count_all('clientes');?></strong> <small>CLIENTES (QUADRA)</small></li>
+							<li class="bg_lh"><i class="icon-group"></i> <strong><?php echo $this->db->count_all('servicos');?></strong> <small>EQUIPES</small></li>
+                            <!--<li class="bg_lh"><i class="icon-barcode"></i> <strong><?php echo $this->db->count_all('produtos');?></strong> <small>PRODUTOS CADASTRADOS</small></li>-->
+                            <!--<li class="bg_lh"><i class="icon-shopping-cart"></i> <strong><?php echo $this->db->count_all('vendas');?></strong> <small>VENDAS</small></li> -->
+                            <!--<li class="bg_lh"><i class="icon-wrench"></i> <strong><?php echo $this->db->count_all('lancamentos');?></strong> <small>Transações</small></li>-->
+                        </ul>
+                 
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="widget-box">
      <div class="widget-title">
         <span class="icon">
             <i class="icon-tags"></i>
          </span>
-        <h5></h5>
+        <h5>MENSALIDADES POR EQUIPE</h5>
   
         <div id="search" style="right:100px;top:2px;">
   <form action="<?php echo base_url()?>index.php/mapos/pesquisarAluno">
@@ -476,7 +500,7 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 						while($ln = mysql_fetch_array($selecionar_servico_innerjoin)){
 							$nome = $ln['nome'];
 					?>
-			<td><?php echo $nome; ?></td>
+			<td><b><?php echo $nome; ?></b></td>
 		<?php }?>          
 
             <td><?php echo $ano; ?></td>
@@ -690,7 +714,7 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 
 <!-- Modal Novo Pagamento Quadra -->
 <div id="modalPgtoQuadra" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form id="formReceita" action="<?php echo base_url() ?>index.php/financeiro/adicionarReceita" method="post">
+  <form id="formReceita" action="<?php echo base_url() ?>index.php/lancamentosquadra/adicionarReceita" method="post">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Adicionar Pagamento Quadra - Receita</h3>
@@ -793,7 +817,7 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 
 <!-- Modal nova despesa -->
 <div id="modalDespesa" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form id="formDespesa" action="<?php echo base_url() ?>index.php/financeiro/adicionarDespesa" method="post">
+  <form id="formDespesa" action="<?php echo base_url() ?>index.php/lancamentosquadra/adicionarDespesa" method="post">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Adicionar Despesa</h3>

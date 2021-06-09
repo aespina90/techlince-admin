@@ -80,7 +80,7 @@ function showTimer() {
 <body onLoad="initTimer();">
 <!--Header-part-->
 <div id="header">
-  <h1><a href="">Sistema Caixa</a></h1>
+  <h1><a href="">Sistema Porcelana Ball</a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -193,7 +193,6 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
     <li class="submenu <?php if(isset($menuRelatorios)){echo 'active open';};?>" >
       <a href="#"><i class="icon icon-list-alt"></i> <span>Relatórios</span> <span class="label"><i class="icon-chevron-down"></i></span></a>
       <ul>
-        <li><a href="<?php echo base_url()?>index.php/relatorios/caixa">Caixa</a></li>
         <li><a href="<?php echo base_url()?>index.php/relatorios/mensalidades">Pagamentos (Quadras)</a></li>
         <li><a href="<?php echo base_url()?>index.php/relatorios/produtos">Produtos </a></li>    
         <li><a href="<?php echo base_url()?>index.php/relatorios/vendas">Vendas </a></li>
@@ -317,7 +316,7 @@ else{?>
 </div>
 <!--Footer-part-->
 <div class="row-fluid">
-  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.05.17</div>
+  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.05.18</div>
 <script>
     var d = new Date();
     var n = d.getFullYear();
