@@ -64,4 +64,11 @@ class Servicos_model extends CI_Model {
 	function count($table){
 		return $this->db->count_all($table);
 	}
+
+    public function getLancamentosQuadraByServico($id){
+        $this->db->where('idServicos',$id);
+        $this->db->order_by('idLancamentosQuadra','asc');
+        $this->db->limit(10000);
+        return $this->db->get('lancamentos_quadra')->result();
+    }
 }

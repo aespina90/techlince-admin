@@ -81,6 +81,7 @@ else{ ?>
             echo '<td>'.$r->fimPartida.'</td>';
             echo '<td>'.$r->quadra.'</td>';
             echo '<td>
+                      <a href="'.base_url().'index.php/servicos/visualizar/'.$r->idServicos.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
                       <a href="'.base_url().'index.php/servicos/editar/'.$r->idServicos.'" class="btn btn-info tip-top" title="Editar Equipe"><i class="icon-pencil icon-white"></i></a>
                       <a href="#modal-excluir" role="button" data-toggle="modal" servico="'.$r->idServicos.'" class="btn btn-danger tip-top" title="Excluir Equipe"><i class="icon-remove icon-white"></i></a>  
                   </td>';

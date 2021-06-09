@@ -451,10 +451,10 @@ class Lancamentosquadra extends CI_Controller {
         $this->data['custom_error'] = '';
         $urlAtual = $this->input->post('urlAtual');
 
-        $this->form_validation->set_rules('descricao', '', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('fornecedor', '', 'trim|xss_clean');
-        $this->form_validation->set_rules('valor', '', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('vencimento', '', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('descricao', '', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('valor', '', 'trim|xss_clean');
+		$this->form_validation->set_rules('servico', '', 'trim|xss_clean');
+		$this->form_validation->set_rules('clienteResponsavel', '', 'trim|xss_clean');
         $this->form_validation->set_rules('pagamento', '', 'trim|xss_clean');
 
         if ($this->form_validation->run() == false) {
@@ -477,41 +477,27 @@ class Lancamentosquadra extends CI_Controller {
                 'valor' => $this->input->post('valor'),
                 'data_vencimento' => $vencimento,
                 'baixado' => $this->input->post('pago'),
-				'clienteResponsavel' => $this->input->post('clienteDesconto'),
-				'clienteResponsavel' => $this->input->post('clientePagamento'),
+				'idServicos' => $this->input->post('idServicos'),
+				'servico' => $this->input->post('servico'),
                 'forma_pgto' => $this->input->post('formaPgto'),
                 'tipo' => $this->input->post('tipo'),
+				'clienteResponsavel' => set_value('clienteResponsavel'),
 				'clientes_id' => $this->input->post('clientes_id'),
-				'idServicos' => $this->input->post('idServicos'),
-				'aparece_no_caixa' => $this->input->post('pago'),
-				'servico' => $this->input->post('servico')
+				'aparece_no_caixa' => $this->input->post('pago')
             );
 
             if ($this->lancamentosquadra_model->edit('lancamentos_quadra',$data,'idLancamentosQuadra',$this->input->post('id')) == TRUE) {
                 $this->session->set_flashdata('success','lançamento editado com sucesso!');
-                redirect(base_url() . 'index.php/mensalidades/mensalidades/');
+
             } else {
                 $this->session->set_flashdata('error','Ocorreu um erro ao tentar editar lançamento!');
-                redirect(base_url() . 'index.php/mensalidades/mensalidades/');
+				redirect(base_url() . 'index.php/servicos/servicos/');
+
             }
         }
-
-        $this->session->set_flashdata('error','Ocorreu um erro ao tentar editar lançamento.');
-		redirect(base_url() . 'index.php/mensalidades/mensalidades/');
-
-        $data = array(
-                'descricao' => $this->input->post('descricao'),
-                'valor' => $this->input->post('valor'),
-                'data_vencimento' => $this->input->post('vencimento'),
-                'baixado' => $this->input->post('pago'),
-                'clienteResponsavel' => set_value('fornecedor'),
-                'forma_pgto' => $this->input->post('formaPgto'),
-                'tipo' => $this->input->post('tipo'),
-				'clientes_id' => $this->input->post('clientes_id'),
-				'idServicos' => $this->input->post('idServicos'),
-				'servico' => $this->input->post('servico')
-            );
-        print_r($data);
+		
+		$this->session->set_flashdata('error','');
+        redirect(base_url() . 'index.php/servicos/servicos/');
 
     }
 

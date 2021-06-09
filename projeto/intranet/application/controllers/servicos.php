@@ -122,6 +122,17 @@ class Servicos extends CI_Controller {
         $this->load->view('tema/topo', $this->data);
 
     }
+
+    public function visualizar(){
+
+        $this->data['custom_error'] = '';
+        $this->data['result'] = $this->servicos_model->getById($this->uri->segment(3));
+        $this->data['transacoes'] = $this->servicos_model->getLancamentosQuadraByServico($this->uri->segment(3));
+        $this->data['view'] = 'servicos/visualizar';
+        $this->load->view('tema/topo', $this->data);
+
+        
+    }
 	
     function excluir(){
 
