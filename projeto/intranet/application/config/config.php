@@ -15,9 +15,11 @@
 |
 */
 
-/*$config['base_url']	= 'https://porcelanaball.com/intranet/';*/
+/*$config['base_url']	= 'https://porcelanaball.com/intranet_atualizando/';*/
 
-$config['base_url']	= 'https://aespina.com/porcelanaball/';
+$config['base_url']	= 'https://porcelanaball.com/intranet/';
+
+/*$config['base_url']	= 'https://aespina.com/porcelanaball/';*/
 
 /*
 |--------------------------------------------------------------------------

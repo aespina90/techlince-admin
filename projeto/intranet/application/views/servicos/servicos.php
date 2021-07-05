@@ -51,13 +51,13 @@ else{ ?>
             <i class="icon-wrench"></i>
          </span>
         <h5>Equipes</h5>
-
+        <input type='submit' value='Imprimir' class='botao' onClick='tabelaEquipes.focus();print();' style="float:right; margin-top: 5px; margin-right: 5px;" />
      </div>
 
 <div class="widget-content nopadding">
 
 
-<table class="table table-bordered ">
+<table class="table table-bordered" id="tabelaEquipes">
     <thead>
         <tr style="backgroud-color: #2D335B">
             <th>Nome</th>

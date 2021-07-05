@@ -2,7 +2,8 @@
 <script type="text/javascript" src="<?php echo base_url()?>js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
 
 <?php $situacao = $this->input->get('situacao');
-	  $periodo = $this->input->get('periodo');	
+	  $periodo = $this->input->get('periodo');
+	  $tipo = $this->input->get('tipo');	
  ?>
 
 <style type="text/css">
@@ -23,12 +24,12 @@
 
 <div class="span5" style="margin-left: 0">
 
-	<a href="#modalReceita" data-toggle="modal" role="button" class="btn btn-success tip-bottom" title="Cadastrar nova receita"><i class="icon-plus icon-white"></i> Nova Receita</a>
-	<a href="#modalDespesa" data-toggle="modal" role="button" class="btn btn-danger tip-bottom" title="Cadastrar nova despesa"><i class="icon-plus icon-white"></i> Nova Despesa</a>
+	<a href="#modalReceita" data-toggle="modal" role="button" class="btn btn-success tip-bottom" title="Cadastrar nova receita"><i class="icon-plus icon-white"></i> Receita</a>
+	<a href="#modalDespesa" data-toggle="modal" role="button" class="btn btn-danger tip-bottom" title="Cadastrar nova despesa"><i class="icon-plus icon-white"></i> Despesa</a>
 </div>
 <div class="span7">
 	<form action="<?php echo current_url(); ?>" method="get" >
-		<div class="span4" style="margin-left: 0">
+		<div class="span3" style="margin-left: 0">
 			<label>Período <i class="icon-info-sign tip-top" title="Lançamentos com vencimento no período."></i></label>
 			<select name="periodo" class="span12">
 				<option value="dia">Dia</option>
@@ -39,7 +40,8 @@
 				<option value="proximo" <?php if($periodo == 'proximo'){ echo 'selected';} ?>>Próximo Ano</option>
 			</select>
 		</div>
-		<div class="span4">
+		
+		<div class="span3">
 			<label>Situação <i class="icon-info-sign tip-top" title="Lançamentos com situação específica ou todos."></i></label>
 			<select name="situacao" class="span12">
 				<option value="todos">Todos</option>
@@ -48,7 +50,16 @@
 				<option value="realizado" <?php if($situacao == 'realizado'){ echo 'selected';} ?>>Realizado</option>
 			</select>
 		</div>
-		<div class="span4" >
+	
+		<div class="span3">
+		<label>Tipo <i class="icon-info-sign tip-top" title="Lançamentos de entrada/saída ou todos."></i></label>
+            <select name="tipo" class="span12">
+                <option value="todos">Todos</option>
+            	<option value="receita" <?php if($tipo == 'receita'){ echo 'selected';} ?>>Receita</option>
+                <option value="despesa" <?php if($tipo == 'despesa'){ echo 'selected';} ?>>Despesa</option>
+            </select>
+        </div>
+		<div class="span2" >
 			&nbsp
 			<button type="submit" class="span12 btn btn-primary">Filtrar</button>
 		</div>
@@ -67,20 +78,20 @@ if(!$results){?>
             <i class="icon-money"></i>
          </span>
         <h5>Lançamentos Financeiros</h5>
-
+        <input type='submit' value='Imprimir' class='botao' onClick='tabelaLancamentos.focus();print();' style="float:right; margin-top: 5px; margin-right: 5px;" />
      </div>
 
 <div class="widget-content nopadding">
 
 
-<table class="table table-bordered ">
+<table class="table table-bordered" id="tabelaLancamentos">
     <thead>
         <tr style="backgroud-color: #2D335B">
             <th>#</th>
             <th>Tipo</th>
-            <th>Cliente / Fornecedor</th>
+            <!--<th>Cliente / Fornecedor</th>-->
             <th>Descrição</th>
-            <th>Data Pgto.</th>
+            <th>Data de Lançamento</th>
             <th>Status</th>
             <th>Valor</th>
             <th></th>
@@ -115,9 +126,9 @@ if(!$results){?>
         <tr style="backgroud-color: #2D335B">
             <th>#</th>
             <th>Tipo</th>
-            <th>Cliente / Fornecedor</th>
+            <!--<th>Cliente / Fornecedor</th>-->
             <th width="20%">Descrição</th>
-            <th>Vencimento</th>
+            <th>Data de Lançamento</th>
             <th>Status</th>
             <th>Valor</th>
             <th></th>
@@ -135,7 +146,7 @@ if(!$results){?>
             echo '<tr>'; 
             echo '<td>'.$r->idLancamentos.'</td>';
             echo '<td><span class="label label-'.$label.'">'.ucfirst($r->tipo).'</span></td>';
-            echo '<td>'.$r->cliente_fornecedor.'</td>';
+            //echo '<td>'.$r->cliente_fornecedor.'</td>';
             echo '<td>'.$r->descricao.'</td>';
             echo '<td>'.$vencimento.'</td>';   
             echo '<td>'.$status.'</td>';
@@ -217,7 +228,7 @@ if(!$results){?>
 	      </div>
     
 	  <div class="span4">
-	    		<label for="vencimento">Data Pgto*</label>
+	    		<label for="vencimento">Data de Lançamento*</label>
 	    		<input class="span12 datepicker" id="vencimento" type="text" name="vencimento" autocomplete="off" />
 	    	</div>
 	    	
@@ -405,7 +416,7 @@ if(!$results){?>
     			<input class="span12 money"  type="text" name="valor"  />
     		</div>
 	    	<div class="span4" >
-	    		<label for="vencimento">Data Vencimento*</label>
+	    		<label for="vencimento">Data de Lançamento*</label>
 	    		<input class="span12 datepicker"  type="text" name="vencimento" id="contapaga" autocomplete="off" />
 	    	</div>
 	    	
@@ -450,7 +461,7 @@ if(!$results){?>
           <input class="span12 money"  type="text" name="valor" id="valorEditar" />
         </div>
         <div class="span4" >
-          <label for="vencimento">Data Vencimento*</label>
+          <label for="vencimento">Data de Lançamento*</label>
           <input class="span12 datepicker"  type="text" name="vencimento" id="vencimentoEditar"  />
         </div>
         <div class="span4">

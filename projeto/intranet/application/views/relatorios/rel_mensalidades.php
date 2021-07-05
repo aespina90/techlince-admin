@@ -45,14 +45,12 @@ if (isset($_POST['selecionarano_rel_men_pagas'])) {
             </div>
             <div class="widget-content">
                 <ul class="site-stats">
-                    <li><a href="<?php echo base_url()?>index.php/relatorios/mensalidadesRapid"><i class="icon-money"></i> <small>Todas as Mensalidades</small></a></li>
+                    <li><a href="<?php echo base_url()?>index.php/relatorios/mensalidadesRapid"><i class="icon-money"></i> <small>GERAR</small></a></li>
                     
                 </ul>
             </div>
         </div>
     </div>
-
-
 
     <div class="span4">
         <div class="widget-box">
@@ -78,10 +76,105 @@ if (isset($_POST['selecionarano_rel_men_pagas'])) {
             </div>
             <div class="widget-content">
                 <ul class="site-stats">
-                    <li><a href="<?php echo base_url()?>index.php/relatorios/imprimirmenPagas"><i class="icon-money"></i> <small>Mensalidades Pagas</small></a></li>
+                    <li><a href="<?php echo base_url()?>index.php/relatorios/imprimirmenPagas"><i class="icon-money"></i> <small>GERAR</small></a></li>
                     
                 </ul>
             </div>
         </div>
     </div>
+
+	<div class="span4">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="icon-list-alt"></i>
+                </span>
+                <h5>Total do período com detalhes</h5>
+                	<form action="" method="post" enctype="multipart/form-data">
+							<select name="selecionarano_rel_men_pagas" onchange="this.form.submit()" style="width: 80px;float: right;margin: 3px 5px 0 0;">
+								<?php
+									$seleciona = mysql_query("SELECT anoselecionado_rel_men_pagas FROM anoselecionado LIMIT 1");
+									while($ln = mysql_fetch_array($seleciona)){
+									$anoselecionado_rel_men_pagas = $ln['anoselecionado_rel_men_pagas'];
+									?>
+									<option><?php echo $anoselecionado_rel_men_pagas; ?></option>
+								<?php ;} ?>
+									<option disabled="">-------</option>
+									<option>2021</option>
+							</select>
+					</form>
+
+            </div>
+            <div class="widget-content">
+                <ul class="site-stats">
+                    <li><a href="<?php echo base_url()?>index.php/relatorios/imprimirmenPagas"><i class="icon-money"></i> <small>GERAR</small></a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+	<div class="span4">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="icon-list-alt"></i>
+                </span>
+                <h5>Total do período sem detalhes</h5>
+                	<form action="" method="post" enctype="multipart/form-data">
+							<select name="selecionarano_rel_men_pagas" onchange="this.form.submit()" style="width: 80px;float: right;margin: 3px 5px 0 0;">
+								<?php
+									$seleciona = mysql_query("SELECT anoselecionado_rel_men_pagas FROM anoselecionado LIMIT 1");
+									while($ln = mysql_fetch_array($seleciona)){
+									$anoselecionado_rel_men_pagas = $ln['anoselecionado_rel_men_pagas'];
+									?>
+									<option><?php echo $anoselecionado_rel_men_pagas; ?></option>
+								<?php ;} ?>
+									<option disabled="">-------</option>
+									<option>2021</option>
+							</select>
+					</form>
+
+            </div>
+            <div class="widget-content">
+                <ul class="site-stats">
+                    <li><a href="<?php echo base_url()?>index.php/relatorios/imprimirmenPagas"><i class="icon-money"></i> <small>GERAR</small></a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+	<div class="span4">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="icon-list-alt"></i>
+                </span>
+                <h5>Valor total das Equipes sem detalhe</h5>
+                	<form action="" method="post" enctype="multipart/form-data">
+							<select name="selecionarano_rel_men_pagas" onchange="this.form.submit()" style="width: 80px;float: right;margin: 3px 5px 0 0;">
+								<?php
+									$seleciona = mysql_query("SELECT anoselecionado_rel_men_pagas FROM anoselecionado LIMIT 1");
+									while($ln = mysql_fetch_array($seleciona)){
+									$anoselecionado_rel_men_pagas = $ln['anoselecionado_rel_men_pagas'];
+									?>
+									<option><?php echo $anoselecionado_rel_men_pagas; ?></option>
+								<?php ;} ?>
+									<option disabled="">-------</option>
+									<option>2021</option>
+							</select>
+					</form>
+
+            </div>
+            <div class="widget-content">
+                <ul class="site-stats">
+                    <li><a href="<?php echo base_url()?>index.php/relatorios/imprimirmenPagas"><i class="icon-money"></i> <small>GERAR</small></a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
 </div>

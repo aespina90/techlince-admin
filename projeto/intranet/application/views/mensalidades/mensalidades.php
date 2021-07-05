@@ -5,10 +5,11 @@
 <a href="#modalPgtoQuadra" data-toggle="modal" role="button" class="btn btn-success tip-bottom" title="Lançar Pagamento Quadra"><i class="icon-plus icon-white"></i> Lançar Pagamento</a>
 
 <a href="#modalDespesa" data-toggle="modal" role="button" class="btn btn-danger tip-bottom" title="Cadastrar nova despesa"><i class="icon-plus icon-white"></i> Lançar Desconto (Bônus)</a>
+<a href="<?php echo base_url()?>index.php/relatorios/mensalidades" class="btn btn-success" style="float:right;">Relatório</a>
 
-<?php if($this->session->userdata('nivel') == 1){?>
+<!-- <?php if($this->session->userdata('nivel') == 1){?>
 <a href="<?php echo base_url()?>index.php/mensalidades/mensalidadesPagas" class="btn btn-link"><i class="icon-money icon-white"></i> Mensalidades Pagas</a>
-<?php }?>
+<?php }?> -->
 
 <!-- <a href="<?php echo base_url();?>index.php/servicos" class="btn btn-success" style="float:right;"><i class="icon-plus icon-white"></i> Equipe</a> -->
 
@@ -277,7 +278,9 @@ if ($mesatual == "12" &&  $diaatual >= 21  ){
     <div class="span12">
         
         <div class="widget-box">
-            <div class="widget-title"><span class="icon"><i class="icon-signal"></i></span><h5>ESTATÍSTICAS</h5></div>
+            <div class="widget-title"><span class="icon"><i class="icon-signal"></i></span><h5>ESTATÍSTICAS</h5>
+			<input type='submit' value='Imprimir' class='botao' onClick='window.print()' style="float:right; margin-top: 5px; margin-right: 5px;" />
+			</div>
             <div class="widget-content">
                 <div class="row-fluid">           
                     <div class="span12">
@@ -369,8 +372,8 @@ if ($mesatual == "12" &&  $diaatual >= 21  ){
 							<tr style='backgroud-color: #2D335B'>
 							
 							    <th style='width: 200px'>Equipe</th>
-							    <th>Ano</th>
 							    <th>Ações</th>
+								<th>Ano</th>
 							    <th>Jan</th>
 							    <th>Fev</th>
 							    <th>Mar</th>
@@ -478,20 +481,20 @@ $corout = "";
 $cornov = "";
 $cordez = "";
 
-if($mesatual == 1 and $data_pagamento <= $diaatual and $jan == 0){$corjan = 'style="background-color:#f2dddd;"';}
-if($mesatual == 2 and $data_pagamento <= $diaatual and $fev == 0){$corfev = 'style="background-color:#f2dddd;"';}
-if($mesatual == 3 and $data_pagamento <= $diaatual and $mar == 0){$cormar = 'style="background-color:#f2dddd;"';}
-if($mesatual == 4 and $data_pagamento <= $diaatual and $abr == 0){$corabr = 'style="background-color:#f2dddd;"';}
-if($mesatual == 5 and $data_pagamento <= $diaatual and $mai == 0){$cormai = 'style="background-color:#f2dddd;"';}
-if($mesatual == 6 and $data_pagamento <= $diaatual and $jun == 0){$corjun = 'style="background-color:#f2dddd;"';}
-if($mesatual == 7 and $data_pagamento <= $diaatual and $jul == 0){$corjul = 'style="background-color:#f2dddd;"';}
-if($mesatual == 8 and $data_pagamento <= $diaatual and $ago == 0){$corago = 'style="background-color:#f2dddd;"';}
-if($mesatual == 9 and $data_pagamento <= $diaatual and $set == 0){$corset = 'style="background-color:#f2dddd;"';}
-if($mesatual == 10 and $data_pagamento <= $diaatual and $out == 0){$corout = 'style="background-color:#f2dddd;"';}
-if($mesatual == 11 and $data_pagamento <= $diaatual and $nov == 0){$cornov = 'style="background-color:#f2dddd;"';}
-if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'style="background-color:#f2dddd;"';}		
+if($mesatual == 1 and $data_pagamento <= $diaatual and $jan == 0){$corjan = 'style="background-color:#fff8bd;"';}
+if($mesatual == 2 and $data_pagamento <= $diaatual and $fev == 0){$corfev = 'style="background-color:#fff8bd;"';}
+if($mesatual == 3 and $data_pagamento <= $diaatual and $mar == 0){$cormar = 'style="background-color:#fff8bd;"';}
+if($mesatual == 4 and $data_pagamento <= $diaatual and $abr == 0){$corabr = 'style="background-color:#fff8bd;"';}
+if($mesatual == 5 and $data_pagamento <= $diaatual and $mai == 0){$cormai = 'style="background-color:#fff8bd;"';}
+if($mesatual == 6 and $data_pagamento <= $diaatual and $jun == 0){$corjun = 'style="background-color:#fff8bd;"';}
+if($mesatual == 7 and $data_pagamento <= $diaatual and $jul == 0){$corjul = 'style="background-color:#fff8bd;"';}
+if($mesatual == 8 and $data_pagamento <= $diaatual and $ago == 0){$corago = 'style="background-color:#fff8bd;"';}
+if($mesatual == 9 and $data_pagamento <= $diaatual and $set == 0){$corset = 'style="background-color:#fff8bd;"';}
+if($mesatual == 10 and $data_pagamento <= $diaatual and $out == 0){$corout = 'style="background-color:#fff8bd;"';}
+if($mesatual == 11 and $data_pagamento <= $diaatual and $nov == 0){$cornov = 'style="background-color:#fff8bd;"';}
+if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'style="background-color:#fff8bd;"';}		
 ?>
-    <tbody>
+    <tbody id="tabelaMensalidades">
         <tr>
            <!-- <td><?php echo $id; ?></td> -->
 
@@ -503,8 +506,9 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 			<td><b><?php echo $nome; ?></b></td>
 		<?php }?>          
 
-            <td><?php echo $ano; ?></td>
-            <td><a href="#modalVer<?php echo $id;?>" data-toggle="modal"><div class="ver">Ações</div></a></td>
+			<td><a href="#modalVer<?php echo $id;?>" data-toggle="modal"><div class="ver">Ações</div></a></td>
+			<td><?php echo $ano; ?></td>
+           
             <td <?php echo $corjan; ?>>
             	<form action="" method="post" enctype="multipart/form-data" >
            			<input type="hidden" name="id" value="<?php echo $id; ?>"/>
@@ -727,15 +731,34 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 			<input type="hidden" name="idServicoPagamento" id="idServicoPagamento"/>
     	</div>
 
-
-    	<div class="span12" style="margin-left: 0"> 
+		<div class="span12" style="margin-left: 0">
+    	<div class="span6"> 
     		<label for="descricao">Descrição*</label>
 			<select name="descricao" id="descricao" class="span12" value="descricao">
 						<option value="Pagamento Integral">Pagamento Integral</option>
 		    			<option value="Pagamento Parcial">Pagamento Parcial</option>			
 		    			<option value="Crédito">Crédito</option>		
 		    </select>
-    	</div>	
+    	</div>
+<!--
+		<div class="span6"> 
+    		<label for="periodo">Período/Mês*</label>
+			<select name="periodo" id="periodo" class="span12" value="periodo">
+						<option value="janeiro">Janeiro</option>
+		    			<option value="fevereiro">Fevereiro</option>			
+		    			<option value="marco">Março</option>
+						<option value="abril">Abril</option>
+		    			<option value="maio">Maio</option>			
+		    			<option value="junho">Junho</option>	
+						<option value="julho">Julho</option>
+		    			<option value="agosto">Agosto</option>			
+		    			<option value="setembro">Setembro</option>	
+						<option value="outubro">Outubro</option>
+		    			<option value="novembro">Novembro</option>			
+		    			<option value="dezembro">Dezembro</option>			
+		    </select>
+    	</div>-->
+		</div>
     	
     	<div class="span12" style="margin-left: 0"> 
     		<div class="span12" style="margin-left: 0"> 
@@ -823,11 +846,33 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
     <h3 id="myModalLabel">Adicionar Despesa</h3>
   </div>
   <div class="modal-body">
+
   		<div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
     	<div class="span12" style="margin-left: 0"> 
 		<label for="descricao">Descrição*</label>
 		<input type="text" class="span12" name="descricao" id="descricao" placeholder="Digite o nome da descrição." />
-    	</div>	
+    	</div>
+
+		<!--
+		<div class="span12"> 
+    		<label for="periodo">Período/Mês*</label>
+			<select name="periodo" id="periodo" class="span12" value="periodo">
+						<option value="janeiro">Janeiro</option>
+		    			<option value="fevereiro">Fevereiro</option>			
+		    			<option value="marco">Março</option>
+						<option value="abril">Abril</option>
+		    			<option value="maio">Maio</option>			
+		    			<option value="junho">Junho</option>	
+						<option value="julho">Julho</option>
+		    			<option value="agosto">Agosto</option>			
+		    			<option value="setembro">Setembro</option>	
+						<option value="outubro">Outubro</option>
+		    			<option value="novembro">Novembro</option>			
+		    			<option value="dezembro">Dezembro</option>			
+		    </select>
+    	</div>
+		-->
+
     	<div class="span12" style="margin-left: 0"> 
 		<div class="span12" style="margin-left: 0">
             <label for="">Equipe</label>
@@ -954,7 +999,8 @@ $sql = mysql_query("UPDATE mensalidades SET servico_id = '".$idServico."', ano =
                 <i class="icon-barcode"></i>
 	                 <form action="<?php echo base_url() ?>index.php/relatorios/carne" method="get">
 		                 <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-		                 <input type="submit" style="border: none;background:transparent" value="Gerar Carnê" value="Gerar Carnê" />
+		                 <input type="submit" style="border: none;background:transparent" value="Gerar Recibo" value="Gerar Recibo" />
+						 
 	                 </form>
                  </li>   
   				</ul>
@@ -964,6 +1010,7 @@ $sql = mysql_query("UPDATE mensalidades SET servico_id = '".$idServico."', ano =
  		
   <div class="modal-footer">
     <a href="#modalEdit<?php echo $id;?>" data-toggle="modal"><button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" style="float: left">Editar Mensalidades</button></a>
+	<a href="'.base_url().'index.php/servicos/visualizar/'.$r->idServicos.'" class="btn tip-top" title="Lançamentos">Pagamentos</a>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
   </div>
 </div>

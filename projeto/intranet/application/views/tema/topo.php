@@ -174,7 +174,7 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
     <li class="submenu <?php if(isset($menuAcademia)){echo 'active open';};?>">
       <a href="#"><i class="icon icon-heart"></i> <span>Academia</span> <span class="label"><i class="icon-chevron-down"></i></span></a>
       <ul>
-        <li><a href="<?php echo base_url()?>index.php/clientes">Cadastro de Alunos</a></li>
+        <li><a href="<?php echo base_url()?>index.php/alunos">Cadastro de Alunos</a></li>
         <li><a href="<?php echo base_url()?>index.php/acompanhamento">Acompanhamento</a></li>
       </ul>
     </li>
@@ -193,7 +193,7 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
     <li class="submenu <?php if(isset($menuRelatorios)){echo 'active open';};?>" >
       <a href="#"><i class="icon icon-list-alt"></i> <span>Relatórios</span> <span class="label"><i class="icon-chevron-down"></i></span></a>
       <ul>
-        <li><a href="<?php echo base_url()?>index.php/relatorios/mensalidades">Pagamentos (Quadras)</a></li>
+        <!--<li><a href="<?php echo base_url()?>index.php/relatorios/mensalidades">Pagamentos (Quadras)</a></li>-->
         <li><a href="<?php echo base_url()?>index.php/relatorios/produtos">Produtos </a></li>    
         <li><a href="<?php echo base_url()?>index.php/relatorios/vendas">Vendas </a></li>
         <li><a href="<?php echo base_url()?>index.php/relatorios/financeiro">Financeiro </a></li>   
@@ -316,7 +316,7 @@ else{?>
 </div>
 <!--Footer-part-->
 <div class="row-fluid">
-  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.05.18</div>
+  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.06.20B</div>
 <script>
     var d = new Date();
     var n = d.getFullYear();

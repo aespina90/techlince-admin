@@ -22,36 +22,63 @@ class Financeiro extends CI_Controller {
 		$where = '';
 		$periodo = $this->input->get('periodo');
 		$situacao = $this->input->get('situacao');
-
+		$tipo = $this->input->get('tipo');
 
 		// busca lançamentos do dia 
-		if($periodo == null || $periodo == 'dia'){
-			
-				if(! isset($situacao) || $situacao == 'todos'){
+		//if($periodo == null || $periodo == 'dia'){
+		//	
+		//		if(! isset($situacao) || $situacao == 'todos'){
 				
-					$where = 'data_vencimento = "'.date('Y-m-d'.'"');
+		//			$where = 'data_vencimento = "'.date('Y-m-d'.'"');
 
+		//		}
+		//		else{
+		//			if($situacao == 'previsto'){
+		//				$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "0"'; 
+		//			}
+		//			else{
+		//				if($situacao == 'atrasado'){
+		//					$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "0"'; 
+		//				}
+		//				else{
+		//					if($situacao == 'realizado'){
+		//					$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "1"'; 
+		//				}
+		//				else{
+		//					$where = 'data_vencimento = "'.date('Y-m-d'.'"');
+		//				}
+		//				}
+		//			}
+		//		}
+		
+
+	// busca lançamentos do dia 
+	if($periodo == null || $periodo == 'dia'){
+			
+		if(! isset($tipo) || $tipo == 'todos'){
+		
+			$where = 'data_vencimento = "'.date('Y-m-d'.'"');
+
+		}
+		else{
+			if($tipo == 'receita'){
+				$where = 'data_vencimento = "'.date('Y-m-d'.'"'); 
+			}
+			else{
+				if($situacao == 'despesa'){
+					$where = 'data_vencimento = "'.date('Y-m-d'.'"'); 
 				}
+				
 				else{
-					if($situacao == 'previsto'){
-						$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "0"'; 
-					}
-					else{
-						if($situacao == 'atrasado'){
-							$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "0"'; 
-						}
-						else{
-							if($situacao == 'realizado'){
-							$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "1"'; 
-						}
-						else{
-							$where = 'data_vencimento = "'.date('Y-m-d'.'"');
-						}
-						}
-					}
+					$where = 'data_vencimento = "'.date('Y-m-d'.'"');
 				}
-		
-		
+				
+			
+		}
+
+
+
+} // fim lançamentos dia
 
 		} // fim lançamentos dia
 
