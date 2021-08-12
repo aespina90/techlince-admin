@@ -174,7 +174,9 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
     <li class="submenu <?php if(isset($menuAcademia)){echo 'active open';};?>">
       <a href="#"><i class="icon icon-heart"></i> <span>Academia</span> <span class="label"><i class="icon-chevron-down"></i></span></a>
       <ul>
-        <li><a href="<?php echo base_url()?>index.php/alunos">Cadastro de Alunos</a></li>
+        <li><a href="<?php echo base_url()?>index.php/alunos">Alunos</a></li>
+        <li><a href="<?php echo base_url()?>index.php/planos">Planos</a></li>
+        <li><a href="<?php echo base_url()?>index.php/mensalidadesAcademia">Mensalidades</a></li>
         <li><a href="<?php echo base_url()?>index.php/acompanhamento">Acompanhamento</a></li>
       </ul>
     </li>
@@ -215,9 +217,9 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
     <div id="breadcrumb">
     <a href="<?php echo base_url()?>" title="Resumo" class="tip-bottom"><i class="icon-home"></i> Resumo</a>
     	<?php if($this->uri->segment(1) != null){?>
-    		<a class="tip-bottom" title="<?php if (ucfirst($this->uri->segment(1)) == "Mapos"){echo "Painel";}elseif (ucfirst($this->uri->segment(1)) == "Os"){echo "Orçamento";}elseif (ucfirst($this->uri->segment(1)) == "Clientes"){echo "Alunos";}else{echo ucfirst($this->uri->segment(1));}?>"><?php if (ucfirst($this->uri->segment(1)) == "Mapos"){echo "Painel";}elseif (ucfirst($this->uri->segment(1)) == "Os"){echo "Orçamento";}elseif (ucfirst($this->uri->segment(1)) == "Clientes"){echo "Alunos";}elseif (ucfirst($this->uri->segment(1)) == "Usuarios"){echo "Funcionários";}else{echo ucfirst($this->uri->segment(1));}?>
+    		<a class="tip-bottom" title="<?php if (ucfirst($this->uri->segment(1)) == "Mapos"){echo "Painel";}elseif (ucfirst($this->uri->segment(1)) == "Os"){echo "Orçamento";}elseif (ucfirst($this->uri->segment(1)) == "Clientes"){echo "Clientes";}else{echo ucfirst($this->uri->segment(1));}?>"><?php if (ucfirst($this->uri->segment(1)) == "Mapos"){echo "Painel";}elseif (ucfirst($this->uri->segment(1)) == "Os"){echo "Orçamento";}elseif (ucfirst($this->uri->segment(1)) == "Clientes"){echo "Clientes";}elseif (ucfirst($this->uri->segment(1)) == "Usuarios"){echo "Funcionários";}else{echo ucfirst($this->uri->segment(1));}?>
     		</a> 
-    	<?php if($this->uri->segment(2) != null){?><a class="current tip-bottom" title="<?php if(ucfirst($this->uri->segment(2)) == 'Os'){echo 'Orçamento';}elseif(ucfirst($this->uri->segment(2)) == 'Clientes'){echo 'Alunos';}else{echo ucfirst($this->uri->segment(2));} ?>"><?php if(ucfirst($this->uri->segment(2)) == 'Os'){echo 'Orçamento';}elseif(ucfirst($this->uri->segment(2)) == 'Clientes'){echo 'Alunos';}else{echo ucfirst($this->uri->segment(2));}} ?></a> <?php }?>
+    	<?php if($this->uri->segment(2) != null){?><a class="current tip-bottom" title="<?php if(ucfirst($this->uri->segment(2)) == 'Os'){echo 'Orçamento';}elseif(ucfirst($this->uri->segment(2)) == 'Clientes'){echo 'Clientes';}else{echo ucfirst($this->uri->segment(2));} ?>"><?php if(ucfirst($this->uri->segment(2)) == 'Os'){echo 'Orçamento';}elseif(ucfirst($this->uri->segment(2)) == 'Clientes'){echo 'Clientes';}else{echo ucfirst($this->uri->segment(2));}} ?></a> <?php }?>
     </div>
   </div>
   <div class="container-fluid">
@@ -316,7 +318,7 @@ else{?>
 </div>
 <!--Footer-part-->
 <div class="row-fluid">
-  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.06.20B</div>
+  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.06.25</div>
 <script>
     var d = new Date();
     var n = d.getFullYear();

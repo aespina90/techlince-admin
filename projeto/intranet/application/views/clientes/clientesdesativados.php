@@ -1,4 +1,4 @@
-<a href="<?php echo base_url();?>index.php/clientes/" class="btn btn-link"><i class="icon-plus icon-white"></i> Alunos ativos</a>
+<a href="<?php echo base_url();?>index.php/clientes/" class="btn btn-link"><i class="icon-plus icon-white"></i> Clientes ativos</a>
 <?php
 if(!$results){?>
 
@@ -7,7 +7,7 @@ if(!$results){?>
             <span class="icon">
                 <i class="icon-user"></i>
             </span>
-            <h5>Alunos Desativados</h5>
+            <h5>Clientes Desativados</h5>
 
         </div>
 
@@ -40,7 +40,7 @@ if(!$results){?>
         <span class="icon">
             <i class="icon-user"></i>
          </span>
-        <h5>Alunos Desativados</h5>
+        <h5>Clientes Desativados</h5>
 
      </div>
 

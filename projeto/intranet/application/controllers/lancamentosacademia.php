@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Financeiro extends CI_Controller {
+class Lancamentosacademia extends CI_Controller {
 
 
 	public function __construct()
@@ -9,76 +9,49 @@ class Financeiro extends CI_Controller {
 		if((!$this->session->userdata('session_id')) || (!$this->session->userdata('logado'))){
         	redirect('mapos/login');
         }
-        $this->load->model('financeiro_model','',TRUE);
-        $this->data['menuFinanceiro'] = 'financeiro';
+        $this->load->model('lancamentosacademia_model','',TRUE);
+        $this->data['menuAcademia'] = 'mensalidadesAcademia';
         $this->load->helper(array('codegen_helper'));
 	}
 	public function index(){
-		$this->lancamentos();
+		$this->lancamentosAcademia();
 	}
 
-	public function lancamentos(){
+	public function lancamentosAcademia(){
 		
 		$where = '';
 		$periodo = $this->input->get('periodo');
 		$situacao = $this->input->get('situacao');
-		$tipo = $this->input->get('tipo');
+
 
 		// busca lançamentos do dia 
-		//if($periodo == null || $periodo == 'dia'){
-		//	
-		//		if(! isset($situacao) || $situacao == 'todos'){
-				
-		//			$where = 'data_vencimento = "'.date('Y-m-d'.'"');
-
-		//		}
-		//		else{
-		//			if($situacao == 'previsto'){
-		//				$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "0"'; 
-		//			}
-		//			else{
-		//				if($situacao == 'atrasado'){
-		//					$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "0"'; 
-		//				}
-		//				else{
-		//					if($situacao == 'realizado'){
-		//					$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "1"'; 
-		//				}
-		//				else{
-		//					$where = 'data_vencimento = "'.date('Y-m-d'.'"');
-		//				}
-		//				}
-		//			}
-		//		}
-		
-
-	// busca lançamentos do dia 
-	if($periodo == null || $periodo == 'dia'){
+		if($periodo == null || $periodo == 'dia'){
 			
-		if(! isset($tipo) || $tipo == 'todos'){
-		
-			$where = 'data_vencimento = "'.date('Y-m-d'.'"');
-
-		}
-		else{
-			if($tipo == 'receita'){
-				$where = 'data_vencimento = "'.date('Y-m-d'.'"'); 
-			}
-			else{
-				if($situacao == 'despesa'){
-					$where = 'data_vencimento = "'.date('Y-m-d'.'"'); 
-				}
+				if(! isset($situacao) || $situacao == 'todos'){
 				
-				else{
 					$where = 'data_vencimento = "'.date('Y-m-d'.'"');
+
 				}
-				
-			
-		}
-
-
-
-} // fim lançamentos dia
+				else{
+					if($situacao == 'previsto'){
+						$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "0"'; 
+					}
+					else{
+						if($situacao == 'atrasado'){
+							$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "0"'; 
+						}
+						else{
+							if($situacao == 'realizado'){
+							$where = 'data_vencimento = "'.date('Y-m-d'.'"').' AND baixado = "1"'; 
+						}
+						else{
+							$where = 'data_vencimento = "'.date('Y-m-d'.'"');
+						}
+						}
+					}
+				}
+		
+		
 
 		} // fim lançamentos dia
 
@@ -163,28 +136,6 @@ class Financeiro extends CI_Controller {
 				}
 			}
 		}
-
-		if($periodo == 'mesanterior'){
-			$mes = $this->getLastMonth();
-			if(! isset($situacao) || $situacao == 'todos'){
-		
-				$where = 'data_vencimento BETWEEN "'.$mes[0].'" AND "'.$mes[1].'"';
-
-			}
-			else{
-				if($situacao == 'previsto'){
-					$where = 'data_vencimento BETWEEN "'.date('Y-m-d').'" AND "'.$mes[1].'" AND baixado = "0"'; 
-				}
-				else{
-					if($situacao == 'atrasado'){
-						$where = 'data_vencimento BETWEEN "'.$mes[0].'" AND "'.date('Y-m-d').'" AND baixado = "0"'; 
-					}
-					else{
-						$where = 'data_vencimento BETWEEN "'.$mes[0].'" AND "'.$mes[1].'" AND baixado = "1"';
-					}
-				}
-			}	
-		}
 		
 
 		if($periodo == 'anterior'){
@@ -235,8 +186,8 @@ class Financeiro extends CI_Controller {
 
 		$this->load->library('pagination');
         
-        $config['base_url'] = base_url().'financeiro/lancamentos';
-        $config['total_rows'] = $this->financeiro_model->count('lancamentos');
+        $config['base_url'] = base_url().'mensalidadesAcademia/mensalidadesAcademia';
+        $config['total_rows'] = $this->lancamentosacademia_model->count('lancamentos_academia');
         $config['per_page'] = 10000;
         $config['next_link'] = 'Próxima';
         $config['prev_link'] = 'Anterior';
@@ -252,9 +203,9 @@ class Financeiro extends CI_Controller {
         $config['next_tag_close'] = '</li>';	
         $this->pagination->initialize($config); 	
 
-		$this->data['results'] = $this->financeiro_model->get('lancamentos','idLancamentos,descricao,valor,data_vencimento,baixado,cliente_fornecedor,tipo,forma_pgto',$where,$config['per_page'],$this->uri->segment(3));
+		$this->data['results'] = $this->lancamentosacademia_model->get('lancamentos_academia','idLancamentosAcademia,descricao,valor,data_vencimento,baixado,clienteResponsavel,tipo,forma_pgto,servico,idServicos,clientes_id',$where,$config['per_page'],$this->uri->segment(3));
        
-	    $this->data['view'] = 'financeiro/lancamentos';
+	    $this->data['view'] = 'mensalidadesAcademia/mensalidadesAcademia';
        	$this->load->view('tema/topo',$this->data);
 	}
 
@@ -315,13 +266,15 @@ class Financeiro extends CI_Controller {
 				'valor' => $valorparcelas,
 				'data_vencimento' => date_format($myDateTime,"Y-m-d"),
 				'baixado' => 0,
-				'cliente_fornecedor' => $this->input->post('cliente_parc'),
+				'clienteResponsavel' => $this->input->post('cliente_parc'),
 				'forma_pgto' => $this->input->post('formaPgto_parc'),
 				'tipo' => $this->input->post('tipo_parc'),
-				'clientes_id' => $this->input->post('clientes_id')
+				'clientes_id' => $this->input->post('clientes_id'),
+				'servico' => $this->input->post('servico'),
+				'idServicos' => $this->input->post('idServicos')
             );
 
-            if ($this->financeiro_model->add('lancamentos',$data) == TRUE) {
+            if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {
                 $this->session->set_flashdata('success','Receita adicionada com sucesso!');
 
             } else {
@@ -338,12 +291,14 @@ class Financeiro extends CI_Controller {
 				'valor' => $entrada,
 				'data_vencimento' => $dia_pgto,
 				'baixado' => 1,
-				'cliente_fornecedor' => $this->input->post('cliente_parc'),
+				'clienteResponsavel' => $this->input->post('cliente_parc'),
 				'forma_pgto' => $this->input->post('formaPgto_parc'),
 				'tipo' => $this->input->post('tipo_parc'),
-				'clientes_id' => $this->input->post('clientes_id')
+				'clientes_id' => $this->input->post('clientes_id'),
+				'servico' => $this->input->post('servico'),
+				'idServicos' => $this->input->post('idServicos')
             );
-			$this->financeiro_model->add1('lancamentos',$data1);
+			$this->lancamentosacademia_model->add1('lancamentos_academia',$data1);
 			
 			$loops = 1;
 			while ($loops <= $qtdparcelas_parc){
@@ -365,13 +320,15 @@ class Financeiro extends CI_Controller {
 				'valor' => $this->input->post('valorparcelas'),
 				'data_vencimento' => date_format($myDateTime,"Y-m-d"),
 				'baixado' => 0,
-				'cliente_fornecedor' => $this->input->post('cliente_parc'),
+				'clienteResponsavel' => $this->input->post('cliente_parc'),
 				'forma_pgto' => $this->input->post('formaPgto_parc'),
 				'tipo' => $this->input->post('tipo_parc'),
-				'clientes_id' => $this->input->post('clientes_id')
+				'clientes_id' => $this->input->post('clientes_id'),
+				'servico' => $this->input->post('servico'),
+				'idServicos' => $this->input->post('idServicos')
             );
 
-            if ($this->financeiro_model->add('lancamentos',$data) == TRUE) {
+            if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {
                 $this->session->set_flashdata('success','Receita adicionada com sucesso!');
             }
              else {
@@ -380,25 +337,14 @@ class Financeiro extends CI_Controller {
 			$loops++;
 			}
 
-			redirect(base_url() . 'index.php/financeiro/lancamentos/');
+			redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
 			
 		}
 }
 
         $this->session->set_flashdata('error','Ocorreu um erro ao tentar adicionar receita.');
-        redirect(base_url() . 'index.php/financeiro/lancamentos/');
+        redirect(base_url() . 'index.php/mensalidades/mensalidades/');
 		
-		
-
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -427,25 +373,25 @@ class Financeiro extends CI_Controller {
                 'descricao' => set_value('descricao'),
 				'valor' => set_value('valor'),
 				'data_vencimento' => $vencimento,
-				'baixado' => "1",
-				'cliente_fornecedor' => set_value('clientePagamento'),
+				'baixado' => $this->input->post('recebido'),
+				'clienteResponsavel' => set_value('clientePagamento'),
 				'forma_pgto' => $this->input->post('formaPgto'),
 				'tipo' => set_value('tipo'),
 				'clientes_id' => $this->input->post('clientes_idPagamento'),
-				'idServico' => $this->input->post('idServicoPagamento'),
+				'idServicos' => $this->input->post('idServicoPagamento'),
 				'servico' => set_value('servicoPagamento')
             );
 
-            if ($this->financeiro_model->add('lancamentos',$data) == TRUE) {
+            if ($this->lancamentosAcademia_model->add('lancamentos_academia',$data) == TRUE) {
                 $this->session->set_flashdata('success','Receita adicionada com sucesso!');
-                redirect(base_url() . 'index.php/financeiro/lancamentos/');
+                redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }
 
         $this->session->set_flashdata('error','Ocorreu um erro ao tentar adicionar receita.');
-        redirect(base_url() . 'index.php/financeiro/lancamentos/');
+        redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
         
     }
 
@@ -474,27 +420,26 @@ class Financeiro extends CI_Controller {
                 'descricao' => set_value('descricao'),
 				'valor' => set_value('valor'),
 				'data_vencimento' => $vencimento,
-				'baixado' => "1",
-				'cliente_fornecedor' => set_value('clienteDesconto'),
-				'cliente_fornecedor' => set_value('fornecedor'),
+				'baixado' => $this->input->post('pago'),
+				'clienteResponsavel' => set_value('clienteDesconto'),
 				'forma_pgto' => $this->input->post('formaPgto'),
 				'tipo' => set_value('tipo'),
 				'clientes_id' => $this->input->post('clientes_idDesconto'),
 				'servico' => set_value('servicoDesconto'),
-				'idServico' => $this->input->post('idServicoDesconto')
+				'idServicos' => $this->input->post('idServicoDesconto')
             );
 
-            if ($this->financeiro_model->add('lancamentos',$data) == TRUE) {
+            if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {
                 $this->session->set_flashdata('success','Despesa adicionada com sucesso!');
-                redirect(base_url() . 'index.php/financeiro/lancamentos/');
+                redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
             } else {
                 $this->session->set_flashdata('error','Ocorreu um erro ao tentar adicionar despesa!');
-                redirect(base_url() . 'index.php/financeiro/lancamentos/');
+                redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
             }
         }
 
         $this->session->set_flashdata('error','Ocorreu um erro ao tentar adicionar despesa.');
-        redirect(base_url() . 'index.php/financeiro/lancamentos/');
+        redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
         
         
     }
@@ -506,10 +451,10 @@ class Financeiro extends CI_Controller {
         $this->data['custom_error'] = '';
         $urlAtual = $this->input->post('urlAtual');
 
-        $this->form_validation->set_rules('descricao', '', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('fornecedor', '', 'trim|xss_clean');
-        $this->form_validation->set_rules('valor', '', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('vencimento', '', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('descricao', '', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('valor', '', 'trim|xss_clean');
+		$this->form_validation->set_rules('servico', '', 'trim|xss_clean');
+		$this->form_validation->set_rules('clienteResponsavel', '', 'trim|xss_clean');
         $this->form_validation->set_rules('pagamento', '', 'trim|xss_clean');
 
         if ($this->form_validation->run() == false) {
@@ -532,40 +477,27 @@ class Financeiro extends CI_Controller {
                 'valor' => $this->input->post('valor'),
                 'data_vencimento' => $vencimento,
                 'baixado' => $this->input->post('pago'),
-                'cliente_fornecedor' => $this->input->post('fornecedor'),
-				'cliente_fornecedor' => $this->input->post('clienteDesconto'),
-				'cliente_fornecedor' => $this->input->post('clientePagamento'),
+				'idServicos' => $this->input->post('idServicos'),
+				'servico' => $this->input->post('servico'),
                 'forma_pgto' => $this->input->post('formaPgto'),
                 'tipo' => $this->input->post('tipo'),
+				'clienteResponsavel' => set_value('clienteResponsavel'),
 				'clientes_id' => $this->input->post('clientes_id'),
-				'aparece_no_caixa' => $this->input->post('pago'),
-				'servico' => $this->input->post('servico')
+				'aparece_no_caixa' => $this->input->post('pago')
             );
 
-            if ($this->financeiro_model->edit('lancamentos',$data,'idLancamentos',$this->input->post('id')) == TRUE) {
+            if ($this->lancamentosacademia_model->edit('lancamentos_academia',$data,'idLancamentosAcademia',$this->input->post('id')) == TRUE) {
                 $this->session->set_flashdata('success','lançamento editado com sucesso!');
-                redirect(base_url() . 'index.php/financeiro/lancamentos/');
+
             } else {
                 $this->session->set_flashdata('error','Ocorreu um erro ao tentar editar lançamento!');
-                redirect(base_url() . 'index.php/financeiro/lancamentos/');
+				redirect(base_url() . 'index.php/servicos/servicos/');
+
             }
         }
-
-        $this->session->set_flashdata('error','Ocorreu um erro ao tentar editar lançamento.');
-		redirect(base_url() . 'index.php/financeiro/lancamentos/');
-
-        $data = array(
-                'descricao' => $this->input->post('descricao'),
-                'valor' => $this->input->post('valor'),
-                'data_vencimento' => $this->input->post('vencimento'),
-                'baixado' => $this->input->post('pago'),
-                'cliente_fornecedor' => set_value('fornecedor'),
-                'forma_pgto' => $this->input->post('formaPgto'),
-                'tipo' => $this->input->post('tipo'),
-				'clientes_id' => $this->input->post('clientes_id'),
-				'servico' => $this->input->post('servico')
-            );
-        print_r($data);
+		
+		$this->session->set_flashdata('error','');
+        redirect(base_url() . 'index.php/servicos/servicos/');
 
     }
 
@@ -580,7 +512,7 @@ class Financeiro extends CI_Controller {
     	}
     	else{
 
-    		$result = $this->financeiro_model->delete('lancamentos','idLancamentos',$id); 
+    		$result = $this->lancamentosacademia_model->delete('lancamentos_academia','idLancamentosAcademia',$id); 
     		if($result){
     			$json = array('result'=>  true);
     			echo json_encode($json);
@@ -610,16 +542,6 @@ class Financeiro extends CI_Controller {
         return array($primeiro,$ultimo);
     }
 
-	protected function getLastMonth() {
-		$mes = date('m');
-        $ano = date('Y'); 
-        $qtdDiasMes = date('t');
-        $inicia = $ano."-".$mes."-";
-
-        $ate = $ano."-".$mes."-".$qtdDiasMes;
-        return array($inicia, $ate);
-    }
-
 	protected function getNextYear() {
         $dias = date("z");
         $primeiro = date("Y-m-d", strtotime("+".( 366 - $dias)." day"));
@@ -647,7 +569,6 @@ class Financeiro extends CI_Controller {
         $ate = $ano."-".$mes."-".$qtdDiasMes;
         return array($inicia, $ate);
     }
-	
 
 }
 

@@ -5,7 +5,7 @@
                 <span class="icon">
                     <i class="icon-user"></i>
                 </span>
-                <h5>Editar Aluno</h5>
+                <h5>Editar Cliente</h5>
             </div>
             <div class="widget-content nopadding">
                 <?php if ($custom_error != '') {

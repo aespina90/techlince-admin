@@ -5,7 +5,7 @@
             <!-- <li><a data-toggle="tab" href="#tab2">Transações</a></li> -->
             <!-- <li><a data-toggle="tab" href="#tab3">Orçamentos</a></li> -->
             <div class="buttons">
-                    <a title="Icon Title" class="btn btn-mini btn-info" href="<?php echo base_url()?>index.php/clientes/editar/<?php echo $result->idClientes?>"><i class="icon-pencil icon-white"></i> Editar</a>
+                    <a title="Icon Title" class="btn btn-mini btn-info" href="<?php echo base_url()?>index.php/alunos/editar/<?php echo $result->idAlunos?>"><i class="icon-pencil icon-white"></i> Editar</a>
                 </div>
         </ul>
     </div>

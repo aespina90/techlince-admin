@@ -5,24 +5,17 @@
                 <span class="icon">
                     <i class="icon-user"></i>
                 </span>
-                <h5>Cadastro de Cliente</h5>
+                <h5>Cadastro de Aluno</h5>
             </div>
             <div class="widget-content nopadding">
                 <?php if ($custom_error != '') {
                     echo '<div class="alert alert-danger">' . $custom_error . '</div>';
                 } ?>
-                <form action="<?php echo current_url(); ?>" id="formCliente" method="post" class="form-horizontal" >
+                <form action="<?php echo current_url(); ?>" id="formAluno" method="post" class="form-horizontal" >
                     <div class="control-group">
-                        <label for="nomeCliente" class="control-label">Nome<span class="required">*</span></label>
+                        <label for="nomeAluno" class="control-label">Nome<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="nomeCliente" type="text" name="nomeCliente" value="<?php echo set_value('nomeCliente'); ?>" autocomplete="off" />
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="apelido" class="control-label">Apelido<span class="required">*</span></label>
-                        <div class="controls">
-                            <input id="apelido" type="text" name="apelido" value="<?php echo set_value('apelido'); ?>" autocomplete="off" />
+                            <input id="nomeAluno" type="text" name="nomeAluno" value="<?php echo set_value('nomeAluno'); ?>" autocomplete="off" />
                         </div>
                     </div>
                     
@@ -34,14 +27,14 @@
                     </div>             
                     
                     <div class="control-group">
-                        <label for="rg" class="control-label">RG<span class="required">*</span></label>
+                        <label for="rg" class="control-label">RG</label>
                         <div class="controls">
                             <input id="rg" type="text" name="rg" value="<?php echo set_value('rg'); ?>" autocomplete="off" />
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="cpf" class="control-label">CPF<span class="required">*</span></label>
+                        <label for="cpf" class="control-label">CPF</label>
                         <div class="controls">
                             <input id="cpf" type="text" name="cpf" value="<?php echo set_value('cpf'); ?>" autocomplete="off" />
                         </div>
@@ -55,66 +48,59 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="email" class="control-label">E-mail<span class="required">*</span></label>
+                        <label for="email" class="control-label">E-mail</label>
                         <div class="controls">
                             <input id="email" type="text" name="email" autocomplete="off" value="<?php echo set_value('email'); ?>"  />
                         </div>
                     </div>
 
                     <div class="control-group" class="control-label">
-                        <label for="rua" class="control-label">Rua<span class="required">*</span></label>
+                        <label for="rua" class="control-label">Endereço</label>
                         <div class="controls">
                             <input id="rua" type="text" name="rua" autocomplete="off" value="<?php echo set_value('rua'); ?>"  />
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="numero" class="control-label">Número<span class="required">*</span></label>
+                        <label for="numero" class="control-label">Número</label>
                         <div class="controls">
                             <input id="numero" type="text" name="numero" autocomplete="off" value="<?php echo set_value('numero'); ?>"  />
                         </div>
                     </div>
 
                     <div class="control-group" class="control-label">
-                        <label for="bairro" class="control-label">Bairro<span class="required">*</span></label>
+                        <label for="bairro" class="control-label">Bairro</label>
                         <div class="controls">
                             <input id="bairro" type="text" name="bairro" autocomplete="off" value="<?php echo set_value('bairro'); ?>Perus"  />
                         </div>
                     </div>
 
                     <div class="control-group" class="control-label">
-                        <label for="cidade" class="control-label">Cidade<span class="required">*</span></label>
+                        <label for="cidade" class="control-label">Cidade</label>
                         <div class="controls">
                             <input id="cidade" type="text" name="cidade" autocomplete="off" value="<?php echo set_value('cidade'); ?>São Paulo"  />
                         </div>
                     </div>
 
                     <div class="control-group" class="control-label">
-                        <label for="estado" class="control-label">Estado<span class="required">*</span></label>
+                        <label for="estado" class="control-label">Estado</label>
                         <div class="controls">
                             <input id="estado" type="text" name="estado" autocomplete="off" value="<?php echo set_value('estado'); ?>SP"  />
                         </div>
                     </div>
 
                     <div class="control-group" class="control-label">
-                        <label for="cep" class="control-label">CEP<span class="required">*</span></label>
+                        <label for="cep" class="control-label">CEP</label>
                         <div class="controls">
                             <input id="cep" type="text" name="cep" autocomplete="off" value="<?php echo set_value('cep'); ?>"  />
                         </div>
-                    </div>
-                    
-                    <div class="control-group" class="control-label">
-                        <label for="update" class="control-label">Receber Atualizações</label>
-                        <div class="controls">
-                            <input id="update" type="checkbox" name="update" autocomplete="off" value="<?php echo set_value('update'); ?>1"  />
-                        </div>
-                    </div>
+            </div>
 
                     <div class="form-actions">
                         <div class="span12">
                             <div class="span6 offset3">
                                 <button type="submit" class="btn btn-success"><i class="icon-plus icon-white"></i> Adicionar</button>
-                                <a href="<?php echo base_url() ?>index.php/clientes" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
+                                <a href="<?php echo base_url() ?>index.php/alunos" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
                             </div>
                         </div>
                     </div>
@@ -136,23 +122,23 @@ $("#cpf").mask("999.999.999-99");
 $("#telefone2").mask("(99) 99999-9999");
 $("#nascimento").mask("99/99/9999");
 
-           $('#formCliente').validate({
+           $('#formAluno').validate({
             rules :{
-                  nomeCliente:{ required: true},
-                  apelido:{ required: true},
-                  rg:{ required: true},
-                  cpf:{ required: true},
-                  telefone:{ required: true},
-                  email:{ required: true},
-                  rua:{ required: true},
-                  numero:{ required: true},
-                  bairro:{ required: true},
-                  cidade:{ required: true},
-                  estado:{ required: true},
-                  cep:{ required: true}
+                  nomeAluno:{ required: false},
+                  apelido:{ required: false},
+                  rg:{ required: false},
+                  cpf:{ required: false},
+                  telefone:{ required: false},
+                  email:{ required: false},
+                  rua:{ required: false},
+                  numero:{ required: false},
+                  bairro:{ required: false},
+                  cidade:{ required: false},
+                  estado:{ required: false},
+                  cep:{ required: false}
             },
             messages:{
-                  nomeCliente :{ required: 'Campo Requerido.'},
+                  nomeAluno :{ required: 'Campo Requerido.'},
                   apelido:{ required: 'Campo Requerido.'},
                   rg:{ required: 'Campo Requerido.'},
                   cpf:{ required: 'Campo Requerido.'},

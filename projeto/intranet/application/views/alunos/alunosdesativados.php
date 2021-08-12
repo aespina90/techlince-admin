@@ -1,4 +1,4 @@
-<a href="<?php echo base_url();?>index.php/clientes/" class="btn btn-link"><i class="icon-plus icon-white"></i> Alunos ativos</a>
+<a href="<?php echo base_url();?>index.php/alunos/" class="btn btn-link"><i class="icon-plus icon-white"></i> Alunos ativos</a>
 <?php
 if(!$results){?>
 
@@ -60,17 +60,17 @@ if(!$results){?>
     <tbody>
         <?php foreach ($results as $r) {
             echo '<tr>';
-            echo '<td>'.$r->idClientes.'</td>';
-            echo '<td>'.$r->nomeCliente.'</td>';
+            echo '<td>'.$r->idAlunos.'</td>';
+            echo '<td>'.$r->nomeAluno.'</td>';
             echo '<td><center>'.$r->telefone.'</center></td>';
             if ($r->update == 0){echo "<td><center>Não Receber</center></td>";}else{echo "<td><center>Receber</center></td>";}'</td>';
             echo '<td>
-            		<a href="'.base_url().'index.php/clientes/visualizar/'.$r->idClientes.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
+            		<a href="'.base_url().'index.php/alunos/visualizar/'.$r->idAlunos.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
                     
-                    <a href="'.base_url().'index.php/clientes/editar/'.$r->idClientes.'" class="btn btn-info tip-top" title="Editar Aluno"><i class="icon-pencil icon-white"></i></a>';
-            if($r->idClientes == 1){
+                    <a href="'.base_url().'index.php/alunos/editar/'.$r->idAlunos.'" class="btn btn-info tip-top" title="Editar Aluno"><i class="icon-pencil icon-white"></i></a>';
+            if($r->idAlunos == 1){
 			}else{
-				echo '<a href="#modal-ativar" role="button" data-toggle="modal" cliente="'.$r->idClientes.'" class="btn btn-success tip-top" title="Reativar Aluno" style="margin-left:3px;"><i class="icon-ok icon-white"></i></a>';
+				echo '<a href="#modal-ativar" role="button" data-toggle="modal" aluno="'.$r->idAlunos.'" class="btn btn-success tip-top" title="Reativar Aluno" style="margin-left:3px;"><i class="icon-ok icon-white"></i></a>';
 			}
             echo '</td>';
             echo '</tr>';
@@ -89,13 +89,13 @@ if(!$results){?>
  
 <!-- Modal -->
 <div id="modal-ativar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form action="<?php echo base_url() ?>index.php/clientes/ativar" method="post" >
+  <form action="<?php echo base_url() ?>index.php/alunos/ativar" method="post" >
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h5 id="myModalLabel">Reativar Aluno</h5>
   </div>
   <div class="modal-body">
-    <input type="hidden" id="idCliente" name="id" value="" />
+    <input type="hidden" id="idAluno" name="id" value="" />
     <h5 style="text-align: center">Deseja realmente reativar este aluno?</h5>
   </div>
   <div class="modal-footer">
@@ -116,8 +116,8 @@ $(document).ready(function(){
 
    $(document).on('click', 'a', function(event) {
         
-        var cliente = $(this).attr('cliente');
-        $('#idCliente').val(cliente);
+        var aluno = $(this).attr('aluno');
+        $('#idAluno').val(aluno);
 
     });
 

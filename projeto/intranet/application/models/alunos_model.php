@@ -1,5 +1,5 @@
 <?php
-class Clientes_model extends CI_Model {
+class Alunos_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -11,7 +11,7 @@ class Clientes_model extends CI_Model {
         $this->db->select($fields);
         $this->db->from($table);
         $this->db->where('ativo', 1);
-        $this->db->order_by('nomeCliente','asc');
+        $this->db->order_by('nomeAluno','asc');
         $this->db->limit($perpage,$start);
         if($where){
             $this->db->where($where);
@@ -29,7 +29,7 @@ class Clientes_model extends CI_Model {
         $this->db->select($fields);
         $this->db->from($table);
         $this->db->where('ativo', 0);
-        $this->db->order_by('idClientes','desc');
+        $this->db->order_by('idAlunos','desc');
         $this->db->limit($perpage,$start);
         if($where){
             $this->db->where($where);
@@ -42,9 +42,9 @@ class Clientes_model extends CI_Model {
     }
 
     function getById($id){
-        $this->db->where('idClientes',$id);
+        $this->db->where('idAlunos',$id);
         $this->db->limit(1);
-        return $this->db->get('clientes')->row();
+        return $this->db->get('alunos')->row();
     }
     
     function add($table,$data){
@@ -88,15 +88,15 @@ class Clientes_model extends CI_Model {
         return $this->db->count_all($table);
     }
     
-    public function getOsByCliente($id){
-        $this->db->where('clientes_id',$id);
+    public function getOsByAlunos($id){
+        $this->db->where('idAlunos',$id);
         $this->db->order_by('idOs','desc');
         $this->db->limit(10);
         return $this->db->get('os')->result();
     }
 
-    public function getLancamentosByCliente($id){
-        $this->db->where('clientes_id',$id);
+    public function getLancamentosByAlunos($id){
+        $this->db->where('idAlunos',$id);
         $this->db->order_by('idLancamentos','asc');
         $this->db->limit(10000);
         return $this->db->get('lancamentos')->result();

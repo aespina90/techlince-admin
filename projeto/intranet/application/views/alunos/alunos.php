@@ -1,7 +1,7 @@
-<a href="<?php echo base_url();?>index.php/clientes/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Novo Cliente</a>
-<a href="<?php echo base_url();?>index.php/clientes/desativados" class="btn btn-link"> Clientes Desativados</a>
+<a href="<?php echo base_url();?>index.php/alunos/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Novo Aluno</a>
+<a href="<?php echo base_url();?>index.php/alunos/desativados" class="btn btn-link"> Alunos Desativados</a>
 
-<a href="<?php echo base_url()?>index.php/relatorios/clientes" class="btn btn-success" style="float:right;">Relatório</a>
+<a href="<?php echo base_url()?>index.php/relatorios/alunos" class="btn btn-success" style="float:right;">Relatório</a>
 
 <?php
 if(!$results){?>
@@ -11,7 +11,7 @@ if(!$results){?>
             <span class="icon">
                 <i class="icon-user"></i>
             </span>
-            <h5>Clientes</h5>
+            <h5>Alunos</h5>
 
         </div>
 
@@ -29,7 +29,7 @@ if(!$results){?>
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="5">Nenhum "CLIENTE" Cadastrado</td>
+                        <td colspan="5"><strong>AGUARDE - Carregando tabelas de integração com a CATRACA.</strong></td>
                     </tr>
                 </tbody>
             </table>
@@ -45,14 +45,14 @@ if(!$results){?>
         <span class="icon">
             <i class="icon-user"></i>
          </span>
-        <h5>Clientes</h5>
-        <input type='submit' value='Imprimir' class='botao' onClick='tabelaClientes.focus();print();' style="float:right; margin-top: 5px; margin-right: 5px;" />
+        <h5>Alunos</h5>
+        <input type='submit' value='Imprimir' class='botao' onClick='tabelaAlunos.focus();print();' style="float:right; margin-top: 5px; margin-right: 5px;" />
      </div>
 
 <div class="widget-content nopadding">
 
 
-<table class="table table-bordered" id="tabelaClientes">
+<table class="table table-bordered" id="tabelaAlunos">
     <thead>
         <tr>
         <th>Nome</th>
@@ -66,18 +66,18 @@ if(!$results){?>
     <tbody>
         <?php foreach ($results as $r) {
             echo '<tr>';
-            echo '<td><b>'.$r->nomeCliente.'</b></td>';
+            echo '<td><b>'.$r->nomeAluno.'</b></td>';
             echo '<td><b>'.$r->apelido.'</b></td>';
             echo '<td>'.$r->email.'</td>';
             echo '<td><center>'.$r->telefone.'</center></td>';
             if ($r->update == 0){echo "<td><center>Não Receber</center></td>";}else{echo "<td><center>Receber</center></td>";}'</td>';
             echo '<td>
-            		<a href="'.base_url().'index.php/clientes/visualizar/'.$r->idClientes.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
+            		<a href="'.base_url().'index.php/alunos/visualizar/'.$r->idAlunos.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
                     
-                    <a href="'.base_url().'index.php/clientes/editar/'.$r->idClientes.'" class="btn btn-info tip-top" title="Editar Cliente"><i class="icon-pencil icon-white"></i></a>';
-            if($r->idClientes == 1){
+                    <a href="'.base_url().'index.php/alunos/editar/'.$r->idAlunos.'" class="btn btn-info tip-top" title="Editar Aluno"><i class="icon-pencil icon-white"></i></a>';
+            if($r->idAlunos == 1){
 			}else{
-				echo '<a href="#modal-excluir" role="button" data-toggle="modal" cliente="'.$r->idClientes.'" class="btn btn-danger tip-top" title="Excluir Cliente" style="margin-left:3px;"><i class="icon-remove icon-white"></i></a>';
+				echo '<a href="#modal-excluir" role="button" data-toggle="modal" aluno="'.$r->idAlunos.'" class="btn btn-danger tip-top" title="Excluir Aluno" style="margin-left:3px;"><i class="icon-remove icon-white"></i></a>';
 			}
             echo '</td>';
             echo '</tr>';
@@ -94,15 +94,15 @@ if(!$results){?>
  
 <!-- Modal -->
 <div id="modal-excluir" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form action="<?php echo base_url() ?>index.php/clientes/excluir" method="post" >
+  <form action="<?php echo base_url() ?>index.php/alunos/excluir" method="post" >
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h5 id="myModalLabel">Desativar Cliente</h5>
+    <h5 id="myModalLabel">Desativar Aluno</h5>
   </div>
   <div class="modal-body">
-    <span class="span12 alert alert-error" style="margin-left: 0"><b>Atenção:</b> Ao desativar o "CLIENTE", o mesmo não poderá ser adicionado em novas vendas ou orçamentos. Você pode visualizar e ativar novamente este cliente clicando na opção "<b>Clientes desativados</b>".</span>
-    <input type="hidden" id="idCliente" name="id" value="" />
-    <h5 style="text-align: center">Deseja realmente desativar este cliente?</h5>
+    <span class="span12 alert alert-error" style="margin-left: 0"><b>Atenção:</b> Ao desativar o "ALUNO", o mesmo não poderá ser adicionado em novas vendas ou orçamentos. Você pode visualizar e ativar novamente este aluno clicando na opção "<b>Alunos desativados</b>".</span>
+    <input type="hidden" id="idAluno" name="id" value="" />
+    <h5 style="text-align: center">Deseja realmente desativar este aluno?</h5>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
@@ -117,8 +117,8 @@ $(document).ready(function(){
 
    $(document).on('click', 'a', function(event) {
         
-        var cliente = $(this).attr('cliente');
-        $('#idCliente').val(cliente);
+        var aluno = $(this).attr('aluno');
+        $('#idAluno').val(aluno);
 
     });
 

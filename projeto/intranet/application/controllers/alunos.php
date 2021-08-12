@@ -9,8 +9,8 @@ class Alunos extends CI_Controller {
             redirect('mapos/login');
             }
             $this->load->helper(array('codegen_helper'));
-            $this->load->model('clientes_model','',TRUE);
-            $this->data['menuQuadra'] = 'clientes';
+            $this->load->model('alunos_model','',TRUE);
+            $this->data['menuAcademia'] = 'alunos';
 	}	
 	
 	function index(){
@@ -23,8 +23,8 @@ class Alunos extends CI_Controller {
         $this->load->library('pagination');
         
    
-        $config['base_url'] = base_url().'index.php/clientes/gerenciar/';
-        $config['total_rows'] = $this->clientes_model->count('clientes');
+        $config['base_url'] = base_url().'index.php/alunos/gerenciar/';
+        $config['total_rows'] = $this->alunos_model->count('alunos');
         $config['per_page'] = 20;
         $config['next_link'] = 'Próxima';
         $config['prev_link'] = 'Anterior';
@@ -47,9 +47,9 @@ class Alunos extends CI_Controller {
         
         $this->pagination->initialize($config); 	
         
-	    $this->data['results'] = $this->clientes_model->get('clientes','idClientes,nomeCliente,apelido,nascimento,rg,cpf,telefone,email,rua,numero,bairro,cidade,estado,cep,update','',$config['per_page'],$this->uri->segment(3));
+	    $this->data['results'] = $this->alunos_model->get('alunos','idAlunos,nomeAluno,apelido,nascimento,rg,cpf,telefone,email,rua,numero,bairro,cidade,estado,cep,update','',$config['per_page'],$this->uri->segment(3));
        	
-       	$this->data['view'] = 'clientes/clientes';
+       	$this->data['view'] = 'alunos/alunos';
        	$this->load->view('tema/topo',$this->data);
     }
 
@@ -59,8 +59,8 @@ class Alunos extends CI_Controller {
         $this->load->library('pagination');
         
    
-        $config['base_url'] = base_url().'index.php/clientes/desativados/';
-        $config['total_rows'] = $this->clientes_model->countdesativados('clientes');
+        $config['base_url'] = base_url().'index.php/alunos/desativados/';
+        $config['total_rows'] = $this->alunos_model->countdesativados('alunos');
         $config['per_page'] = 100;
         $config['next_link'] = 'Próxima';
         $config['prev_link'] = 'Anterior';
@@ -83,9 +83,9 @@ class Alunos extends CI_Controller {
         
         $this->pagination->initialize($config); 	
         
-	    $this->data['results'] = $this->clientes_model->getdesativados('clientes','idClientes,nomeCliente,apelido,nascimento,rg,cpf,telefone,email,rua,numero,bairro,cidade,estado,cep,update','',$config['per_page'],$this->uri->segment(3));
+	    $this->data['results'] = $this->alunos_model->getdesativados('alunos','idAlunos,nomeAluno,apelido,nascimento,rg,cpf,telefone,email,rua,numero,bairro,cidade,estado,cep,update','',$config['per_page'],$this->uri->segment(3));
        	
-       	$this->data['view'] = 'clientes/clientesdesativados';
+       	$this->data['view'] = 'alunos/alunosdesativados';
        	$this->load->view('tema/topo',$this->data);
 	}
 
@@ -94,7 +94,7 @@ class Alunos extends CI_Controller {
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
 
-        if ($this->form_validation->run('clientes') == false) {
+        if ($this->form_validation->run('alunos') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
         	  $nascimento = $this->input->post('nascimento');
@@ -107,7 +107,7 @@ class Alunos extends CI_Controller {
                $nascimento = date('Y/m/d'); 
             }
             $data = array(
-                'nomeCliente' => set_value('nomeCliente'),
+                'nomeAluno' => set_value('nomeAluno'),
                 'apelido' => set_value('apelido'),
                 'nascimento' => $nascimento,
                 'rg' => set_value('rg'),
@@ -124,14 +124,14 @@ class Alunos extends CI_Controller {
                 'dataCadastro' => date('Y-m-d')
             );
 
-            if ($this->clientes_model->add('clientes', $data) == TRUE) {
-                $this->session->set_flashdata('success','Cliente adicionado com sucesso!');
-                redirect(base_url() . 'index.php/clientes/clientes/');
+            if ($this->alunos_model->add('alunos', $data) == TRUE) {
+                $this->session->set_flashdata('success','Aluno adicionado com sucesso!');
+                redirect(base_url() . 'index.php/alunos/alunos/');
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }
-        $this->data['view'] = 'clientes/adicionarCliente';
+        $this->data['view'] = 'alunos/adicionarAluno';
         $this->load->view('tema/topo', $this->data);
 
     }
@@ -140,7 +140,7 @@ class Alunos extends CI_Controller {
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
 
-        if ($this->form_validation->run('clientes') == false) {
+        if ($this->form_validation->run('alunos') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
         	$nascimento = $this->input->post('nascimento');
@@ -153,7 +153,7 @@ class Alunos extends CI_Controller {
                $nascimento = date('Y/m/d'); 
             }
             $data = array(
-                'nomeCliente' => $this->input->post('nomeCliente'),
+                'nomeAluno' => $this->input->post('nomeAluno'),
                 'apelido' => $this->input->post('apelido'),
                 'nascimento' => $nascimento,
                 'rg' => $this->input->post('rg'),
@@ -169,17 +169,17 @@ class Alunos extends CI_Controller {
                 'update' => $this->input->post('update')
             );
 
-            if ($this->clientes_model->edit('clientes', $data, 'idClientes', $this->input->post('idClientes')) == TRUE) {
-                $this->session->set_flashdata('success','Cliente editado com sucesso!');
-                redirect(base_url() . 'index.php/clientes/clientes');
+            if ($this->alunos_model->edit('alunos', $data, 'idAlunos', $this->input->post('idAlunos')) == TRUE) {
+                $this->session->set_flashdata('success','Aluno editado com sucesso!');
+                redirect(base_url() . 'index.php/alunos/alunos');
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro</p></div>';
             }
         }
 
 
-        $this->data['result'] = $this->clientes_model->getById($this->uri->segment(3));
-        $this->data['view'] = 'clientes/editarCliente';
+        $this->data['result'] = $this->alunos_model->getById($this->uri->segment(3));
+        $this->data['view'] = 'alunos/editarAluno';
         $this->load->view('tema/topo', $this->data);
 
     }
@@ -187,10 +187,10 @@ class Alunos extends CI_Controller {
     public function visualizar(){
 
         $this->data['custom_error'] = '';
-        $this->data['result'] = $this->clientes_model->getById($this->uri->segment(3));
-        $this->data['results'] = $this->clientes_model->getOsByCliente($this->uri->segment(3));
-        $this->data['transacoes'] = $this->clientes_model->getLancamentosByCliente($this->uri->segment(3));
-        $this->data['view'] = 'clientes/visualizar';
+        $this->data['result'] = $this->alunos_model->getById($this->uri->segment(3));
+        $this->data['results'] = $this->alunos_model->getOsByAluno($this->uri->segment(3));
+        $this->data['transacoes'] = $this->alunos_model->getLancamentosByAluno($this->uri->segment(3));
+        $this->data['view'] = 'alunos/visualizar';
         $this->load->view('tema/topo', $this->data);
 
         
@@ -206,17 +206,17 @@ class Alunos extends CI_Controller {
             $id =  $this->input->post('id');
             if ($id == null){
 
-                $this->session->set_flashdata('error','Erro ao tentar excluir cliente.');            
-                redirect(base_url().'index.php/clientes/gerenciar/');
+                $this->session->set_flashdata('error','Erro ao tentar excluir aluno.');            
+                redirect(base_url().'index.php/alunos/gerenciar/');
             }
 
-            $this->db->where('idClientes', $id);
+            $this->db->where('idAlunos', $id);
             $this->db->set('ativo', 0);
-            $this->db->update('clientes');
+            $this->db->update('alunos');
 
 
-            $this->session->set_flashdata('success','Cliente excluido com sucesso!');            
-            redirect(base_url().'index.php/clientes/gerenciar/');
+            $this->session->set_flashdata('success','Aluno excluido com sucesso!');            
+            redirect(base_url().'index.php/alunos/gerenciar/');
     }
 
 
@@ -231,17 +231,17 @@ class Alunos extends CI_Controller {
             $id =  $this->input->post('id');
             if ($id == null){
 
-                $this->session->set_flashdata('error','Erro ao tentar reativar cliente.');            
-                redirect(base_url().'index.php/clientes/gerenciar/');
+                $this->session->set_flashdata('error','Erro ao tentar reativar aluno.');            
+                redirect(base_url().'index.php/alunos/gerenciar/');
             }
 
-            $this->db->where('idClientes', $id);
+            $this->db->where('idAlunos', $id);
             $this->db->set('ativo', 1);
-            $this->db->update('clientes');
+            $this->db->update('alunos');
 
 
-            $this->session->set_flashdata('success','Cliente excluido com sucesso!');            
-            redirect(base_url().'index.php/clientes/gerenciar/');
+            $this->session->set_flashdata('success','Aluno excluido com sucesso!');            
+            redirect(base_url().'index.php/alunos/gerenciar/');
     }
 }
 

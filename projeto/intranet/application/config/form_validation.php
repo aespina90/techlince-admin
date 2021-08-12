@@ -70,6 +70,77 @@ $config = array('clientes' => array(array(
                                 	'rules'=>'trim|xss_clean'
                                 ))
                 ,
+                'alunos' => array(array(
+                    'field'=>'nomeAluno',
+                    'label'=>'Nome',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'documento',
+                    'label'=>'CPF/CNPJ',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'apelido',
+                    'label'=>'Apelido',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'rg',
+                    'label'=>'RG',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'cpf',
+                    'label'=>'CPF',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'telefone',
+                    'label'=>'Telefone',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'email',
+                    'label'=>'Email',
+                    'rules'=>'trim|valid_email|xss_clean'
+                ),
+                array(
+                    'field'=>'rua',
+                    'label'=>'Rua',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'numero',
+                    'label'=>'Número',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'bairro',
+                    'label'=>'Bairro',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'cidade',
+                    'label'=>'Cidade',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'estado',
+                    'label'=>'Estado',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'cep',
+                    'label'=>'CEP',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'update',
+                    'label'=>'Update',
+                    'rules'=>'trim|xss_clean'
+                ))
+,
                 'servicos' => array(array(
                                     'field'=>'nome',
                                     'label'=>'Nome',
@@ -111,6 +182,22 @@ $config = array('clientes' => array(array(
                                     'rules'=>'required|trim|xss_clean'
                                 ))
                 ,
+                'planos' => array(array(
+                    'field'=>'nome',
+                    'label'=>'Nome',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'descricao',
+                    'label'=>'',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'preco',
+                    'label'=>'',
+                    'rules'=>'required|trim|xss_clean'
+                ))
+,
                 'produtos' => array(array(
                                     'field'=>'descricao',
                                     'label'=>'',

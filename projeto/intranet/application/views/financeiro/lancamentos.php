@@ -34,6 +34,7 @@
 			<select name="periodo" class="span12">
 				<option value="dia">Dia</option>
 				<option value="semana" <?php if($periodo == 'semana'){ echo 'selected';} ?>>Semana</option>
+				<option value="mesanterior" <?php if($periodo == 'mesanterior'){ echo 'selected';} ?>>Últimos Dois Meses</option>
 				<option value="mes" <?php if($periodo == 'mes'){ echo 'selected';} ?>>Mês</option>
 				<option value="anterior" <?php if($periodo == 'anterior'){ echo 'selected';} ?>>Ano Anterior</option>
 				<option value="ano" <?php if($periodo == 'ano'){ echo 'selected';} ?>>Ano Atual</option>
@@ -92,15 +93,15 @@ if(!$results){?>
             <!--<th>Cliente / Fornecedor</th>-->
             <th>Descrição</th>
             <th>Data de Lançamento</th>
-            <th>Status</th>
+            <!--<th>Status</th>-->
             <th>Valor</th>
-            <th></th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
 
         <tr>
-            <td colspan="8">Nenhum lançamento encontrado</td>
+            <td colspan="6">Nenhum lançamento encontrado</td>
         </tr>
     </tbody>
 </table>
@@ -129,9 +130,9 @@ if(!$results){?>
             <!--<th>Cliente / Fornecedor</th>-->
             <th width="20%">Descrição</th>
             <th>Data de Lançamento</th>
-            <th>Status</th>
+            <!--<th>Status</th>-->
             <th>Valor</th>
-            <th></th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -149,7 +150,7 @@ if(!$results){?>
             //echo '<td>'.$r->cliente_fornecedor.'</td>';
             echo '<td>'.$r->descricao.'</td>';
             echo '<td>'.$vencimento.'</td>';   
-            echo '<td>'.$status.'</td>';
+            //echo '<td>'.$status.'</td>';
             echo '<td> R$ '.number_format($r->valor,2,',','.').'</td>';
             
             echo '<td>
@@ -158,22 +159,19 @@ if(!$results){?>
                   </td>';
             echo '</tr>';
         }?>
-        <tr>
-            
-        </tr>
     </tbody>
     <tfoot>
     	<tr>
-    		<td colspan="6" style="text-align: right; color: green"> <strong>Total Receitas:</strong></td>
-    		<td colspan="2" style="text-align: left; color: green"><strong>R$ <?php echo number_format($totalReceita,2,',','.') ?></strong></td>
+    		<td colspan="5" style="text-align: right; color: green"> <strong>Total Receitas:</strong></td>
+    		<td colspan="1" style="text-align: left; color: green"><strong>R$ <?php echo number_format($totalReceita,2,',','.') ?></strong></td>
     	</tr>
     	<tr>
-    		<td colspan="6" style="text-align: right; color: red"> <strong>Total Despesas:</strong></td>
-    		<td colspan="2" style="text-align: left; color: red"><strong>R$ <?php echo number_format($totalDespesa,2,',','.') ?></strong></td>
+    		<td colspan="5" style="text-align: right; color: red"> <strong>Total Despesas:</strong></td>
+    		<td colspan="1" style="text-align: left; color: red"><strong>R$ <?php echo number_format($totalDespesa,2,',','.') ?></strong></td>
     	</tr>
     	<tr>
-    		<td colspan="6" style="text-align: right"> <strong>Saldo:</strong></td>
-    		<td colspan="2" style="text-align: left;"><strong>R$ <?php echo number_format($totalReceita - $totalDespesa,2,',','.') ?></strong></td>
+    		<td colspan="5" style="text-align: right"> <strong>Saldo:</strong></td>
+    		<td colspan="1" style="text-align: left;"><strong>R$ <?php echo number_format($totalReceita - $totalDespesa,2,',','.') ?></strong></td>
     	</tr>
     </tfoot>
 </table>
@@ -221,11 +219,11 @@ if(!$results){?>
     			<input class="span12 money" id="valor" type="text" name="valor" autocomplete="off"/>
     		</div>
     	
-	      <div class="span4">  
+	      <!--<div class="span4">  
 	        <label for="desconto">Desconto</label>
 	        <input class="span6" id="desconto" type="text" name="desconto" value="" placeholder="em %" style="float: left;" autocomplete="off" />
 	        <input class="btn btn-inverse" onclick="mostrarValor();" type="button" name="valor_desconto" value="Aplicar" placeholder="em %" style="float: left;margin-left:5px;" />
-	      </div>
+	      </div>-->
     
 	  <div class="span4">
 	    		<label for="vencimento">Data de Lançamento*</label>
@@ -234,7 +232,7 @@ if(!$results){?>
 	    	
     	</div>
 	
-    	<div class="span12" style="margin-left: 0">
+    	<!--<div class="span12" style="margin-left: 0">
     	
     		<div class="span4" style="margin-left: 0">
 		    		<label for="qtdparcelas">Qtd Parcelas</label>
@@ -270,7 +268,7 @@ if(!$results){?>
 		    	</div>
 	    	</div>
     		
-    	</div>
+    	</div>-->
 
   </div>
   <div class="modal-footer">
@@ -385,8 +383,9 @@ if(!$results){?>
   		<div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
     	<div class="span12" style="margin-left: 0"> 
 		<label for="descricao">Descrição*</label>
-		<input type="text" class="span12" name="descricao" id="descricao" placeholder="Digite o nome da descrição." />
-    	</div>	
+		<input type="text" class="span12" name="descricao" id="descricao" placeholder="" />
+    	</div>
+		<!--	
     	<div class="span12" style="margin-left: 0"> 
     		<div class="span12" style="margin-left: 0"> 
     			<label for="fornecedor">Fornecedor / Empresa*</label>
@@ -395,10 +394,11 @@ if(!$results){?>
     		
     		
     	</div>
+		
 		<div class="span12" style="margin-left: 0"> 
     		<div class="span4" style="margin-left: 0">
     			<label for="pago">Foi Pago?</label>
-	    		&nbsp &nbsp &nbsp &nbsp<input  id="pago" type="checkbox" name="pago" value="1" />	
+	    		&nbsp &nbsp &nbsp &nbsp<input  id="pago" type="checkbox" name="pago" value="0" />	
     		</div>
     		<div id="divPagamento" class="span8" style=" display: none">
 
@@ -409,6 +409,7 @@ if(!$results){?>
 	    	</div>
     		
     	</div>
+		-->
     	<div class="span12" style="margin-left: 0"> 
     		<div class="span4" style="margin-left: 0">  
     			<label for="valor">Valor*</label>
@@ -445,14 +446,7 @@ if(!$results){?>
         <input class="span12" id="descricaoEditar" type="text" name="descricao"  />
         <input id="urlAtualEditar" type="hidden" name="urlAtual" value=""  />
       </div>  
-	  <div class="span12" style="margin-left: 0"> 
-    		<div class="span12" style="margin-left: 0"> 
-    			<label for="fornecedor">Fornecedor / Empresa</label>
-    			<input class="span12" id="fornecedor" type="text" name="fornecedor" />
-    		</div>
-    		
-    		
-    	</div>
+
       <div class="span12" style="margin-left: 0"> 
         <div class="span4" style="margin-left: 0">  
           <label for="valor">Valor*</label>
@@ -473,25 +467,6 @@ if(!$results){?>
         </div>
         
       </div>
-      <div class="span12" style="margin-left: 0"> 
-        <div class="span4" style="margin-left: 0">
-          <label for="pago">Foi Pago?</label>
-          &nbsp &nbsp &nbsp &nbsp<input  id="pagoEditar" type="checkbox" name="pago" value="1" /> 
-        </div>
-        <div id="divPagamentoEditar" class="span8" style=" display: none">
-
-          <div class="span6">
-            <label for="formaPgto">Forma Pgto</label>
-            <select name="formaPgto" id="formaPgtoEditar"  class="span12">
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de Crédito">Cartão de Crédito</option>
-              <option value="Débito">Débito</option>        
-            </select>
-          </div>
-        </div>
-        
-      </div>
-
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true" id="btnCancelarEditar">Cancelar</button>

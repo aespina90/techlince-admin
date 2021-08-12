@@ -135,7 +135,7 @@
 			        <span class="icon">
 			            <i class="icon-tags"></i>
 			         </span>
-			        <h5>Lançamentos Financeiros do Aluno</h5>
+			        <h5>Lançamentos Financeiros do Cliente</h5>
 
 			     </div>
 
@@ -147,7 +147,7 @@
 			        <tr style="backgroud-color: #2D335B">
 			            <th>#</th>
 			            <th>Tipo</th>
-			            <th>Aluno</th>
+			            <th>Cliente</th>
 			            <th>Descrição</th>
 			            <th>Vencimento</th>
 			            <th>Status</th>
@@ -172,7 +172,7 @@
 			        <span class="icon">
 			            <i class="icon-tags"></i>
 			         </span>
-			        <h5>Lançamentos Financeiros do Aluno</h5>
+			        <h5>Lançamentos Financeiros do Cliente</h5>
 
 			     </div>
 
@@ -184,7 +184,7 @@
 			        <tr style="backgroud-color: #2D335B">
 			            <th>#</th>
 			            <th>Tipo</th>
-			            <th>Aluno</th>
+			            <th>Cliente</th>
 			            <th width="20%">Descrição</th>
 			            <th>Vencimento</th>
 			            <th>Status</th>

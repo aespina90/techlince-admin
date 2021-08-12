@@ -740,7 +740,7 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 		    			<option value="Crédito">Crédito</option>		
 		    </select>
     	</div>
-<!--
+
 		<div class="span6"> 
     		<label for="periodo">Período/Mês*</label>
 			<select name="periodo" id="periodo" class="span12" value="periodo">
@@ -757,7 +757,7 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 		    			<option value="novembro">Novembro</option>			
 		    			<option value="dezembro">Dezembro</option>			
 		    </select>
-    	</div>-->
+    	</div>
 		</div>
     	
     	<div class="span12" style="margin-left: 0"> 
@@ -853,7 +853,7 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 		<input type="text" class="span12" name="descricao" id="descricao" placeholder="Digite o nome da descrição." />
     	</div>
 
-		<!--
+		
 		<div class="span12"> 
     		<label for="periodo">Período/Mês*</label>
 			<select name="periodo" id="periodo" class="span12" value="periodo">
@@ -871,7 +871,7 @@ if($mesatual == 12 and $data_pagamento < $diaatual and $dez == 0){$cordez = 'sty
 		    			<option value="dezembro">Dezembro</option>			
 		    </select>
     	</div>
-		-->
+	
 
     	<div class="span12" style="margin-left: 0"> 
 		<div class="span12" style="margin-left: 0">
