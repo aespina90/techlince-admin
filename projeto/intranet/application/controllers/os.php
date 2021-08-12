@@ -238,12 +238,30 @@ class Os extends CI_Controller {
 
     }
 
+    public function autoCompleteAluno(){
+
+        if (isset($_GET['term'])){
+            $q = strtolower($_GET['term']);
+            $this->os_model->autoCompleteAluno($q);
+        }
+
+    }
+
     
     public function autoCompleteServico(){
 
         if (isset($_GET['term'])){
             $q = strtolower($_GET['term']);
             $this->os_model->autoCompleteServico($q);
+        }
+
+    }
+
+    public function autoCompletePlano(){
+
+        if (isset($_GET['term'])){
+            $q = strtolower($_GET['term']);
+            $this->os_model->autoCompletePlano($q);
         }
 
     }

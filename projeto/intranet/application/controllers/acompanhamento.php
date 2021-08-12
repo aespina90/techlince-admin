@@ -62,17 +62,17 @@ class Acompanhamento extends CI_Controller {
         if ($this->form_validation->run('adicionaracompanhamento') == false) {
            $this->data['custom_error'] = (validation_errors() ? true : false);
         }else {
-        if($this->input->post('clientes_id') == 0){
-				$this->session->set_flashdata('error',"É necessário cadastrar o aluno <b>".$this->input->post('cliente')."</b> para iniciar o acompanhamento. Acesse o menu <b>Alunos > Adicionar Aluno</b>");
+        if($this->input->post('alunos_id') == 0){
+				$this->session->set_flashdata('error',"É necessário cadastrar o aluno <b>".$this->input->post('aluno')."</b> para iniciar o acompanhamento. Acesse o menu <b>Alunos > Adicionar Aluno</b>");
 				redirect('acompanhamento');
 		}else{
             $data = array(
-                'clientes_id' => $this->input->post('clientes_id'),
+                'alunos_id' => $this->input->post('alunos_id'),
                 'last_update' => date('y/m/d')
             );
 
             if (is_numeric($id = $this->acompanhamento_model->add('acompanhamento', $data, true)) ) {
-                $this->session->set_flashdata('success','Acompanhamento do Aluno <b>'.$this->input->post('cliente').'</b> iniciado.');
+                $this->session->set_flashdata('success','Acompanhamento do Aluno <b>'.$this->input->post('aluno').'</b> iniciado.');
                 redirect('acompanhamento/editar/'.$id);
 
             } else {
@@ -445,7 +445,7 @@ class Acompanhamento extends CI_Controller {
             $data = array(
                 'acompanhamento_id' => $this->input->post('id'),
                 'usuarios_id' => $this->input->post('usuarios_id'),
-                'clientes_id' => $this->input->post('clientes_id'),
+                'alunos_id' => $this->input->post('alunos_id'),
                 'data_avaliacao' => date('y/m/d')
             );
             $data_last_update = array(
@@ -558,10 +558,10 @@ class Acompanhamento extends CI_Controller {
     }
 
 /* ############### AUTOCOMPLETE ############### */
-	public function autoCompleteCliente(){
+	public function autoCompleteAluno(){
         if (isset($_GET['term'])){
             $q = strtolower($_GET['term']);
-            $this->acompanhamento_model->autoCompleteCliente($q);
+            $this->acompanhamento_model->autoCompleteAluno($q);
         }
     }
 

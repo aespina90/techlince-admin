@@ -95,11 +95,11 @@ class Alunos_model extends CI_Model {
         return $this->db->get('os')->result();
     }
 
-    public function getLancamentosByAlunos($id){
-        $this->db->where('idAlunos',$id);
-        $this->db->order_by('idLancamentos','asc');
+    public function getLancamentosByAluno($id){
+        $this->db->where('alunos_id',$id);
+        $this->db->order_by('idLancamentosAcademia','asc');
         $this->db->limit(10000);
-        return $this->db->get('lancamentos')->result();
+        return $this->db->get('lancamentos_academia')->result();
     }
 
 }

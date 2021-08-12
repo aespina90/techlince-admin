@@ -25,9 +25,9 @@ class Lancamentosacademia_model extends CI_Model {
 
 
     function getById($id){
-        $this->db->where('idPlanos',$id);
+        $this->db->where('idAlunos',$id);
         $this->db->limit(1);
-        return $this->db->get('planos')->row();
+        return $this->db->get('alunos')->row();
     }
     
     function add($table,$data){

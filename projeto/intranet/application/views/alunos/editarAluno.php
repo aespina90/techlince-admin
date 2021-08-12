@@ -11,12 +11,12 @@
                 <?php if ($custom_error != '') {
                     echo '<div class="alert alert-danger">' . $custom_error . '</div>';
                 } ?>
-                <form action="<?php echo current_url(); ?>" id="formCliente" method="post" class="form-horizontal" >
+                <form action="<?php echo current_url(); ?>" id="formAluno" method="post" class="form-horizontal" >
                     <div class="control-group">
-                        <?php echo form_hidden('idClientes',$result->idClientes) ?>
-                        <label for="nomeCliente" class="control-label">Nome<span class="required">*</span></label>
+                        <?php echo form_hidden('idAlunos',$result->idAlunos) ?>
+                        <label for="nomeAluno" class="control-label">Nome<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="nomeCliente" type="text" name="nomeCliente" value="<?php echo $result->nomeCliente; ?>" autocomplete="off" />
+                            <input id="nomeAluno" type="text" name="nomeAluno" value="<?php echo $result->nomeAluno; ?>" autocomplete="off" />
                         </div>
                     </div>
 
@@ -116,7 +116,7 @@
                         <div class="span12">
                             <div class="span6 offset3">
                                 <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Alterar</button>
-                                <a href="<?php echo base_url() ?>index.php/clientes" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
+                                <a href="<?php echo base_url() ?>index.php/alunos" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
                             </div>
                         </div>
                     </div>
@@ -139,9 +139,9 @@ $("#nascimento").mask("99/99/9999");
 $("#rg").mask("99.999.999-9");
 $("#cpf").mask("999.999.999-99");
 
-           $('#formCliente').validate({
+           $('#formAluno').validate({
             rules :{
-                  nomeCliente:{ required: true},
+                  nomeAluno:{ required: true},
                   apelido:{ required: true},
                   rg:{ required: true},
                   cpf:{ required: true},
@@ -153,7 +153,7 @@ $("#cpf").mask("999.999.999-99");
                   cep:{ required: true}
             },
             messages:{
-                  nomeCliente :{ required: 'Campo Requerido.'},
+                  nomeAluno :{ required: 'Campo Requerido.'},
                   apelido :{ required: 'Campo Requerido.'},
                   rg :{ required: 'Campo Requerido.'},
                   cpf :{ required: 'Campo Requerido.'},

@@ -374,6 +374,11 @@ $config = array('clientes' => array(array(
                                     'rules'=>'trim|xss_clean'
                                 ),
                                 array(
+                                    'field'=>'alunoPagamento',
+                                    'label'=>'Aluno',
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
                                     'field'=>'servicoPagamento',
                                     'label'=>'Equipe',
                                     'rules'=>'trim|xss_clean'
@@ -394,6 +399,68 @@ $config = array('clientes' => array(array(
                                     'rules'=>'required|trim|xss_clean'
                                 ))
                 ,
+                'lancamentos_academia' => array(array(
+                    'field'=>'descricao',
+                    'label'=>'Descrição',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'valor',
+                    'label'=>'Valor',
+                    'rules'=>'required|trim|xss_clean'
+                ),
+                array(
+                    'field'=>'vencimento',
+                    'label'=>'Data Vencimento',
+                    'rules'=>'trim|xss_clean'
+                ),
+
+                array(
+                    'field'=>'alunoResponsavel',
+                    'label'=>'Aluno',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'alunoPagamento',
+                    'label'=>'Aluno',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'aluno',
+                    'label'=>'Aluno',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'alunoDesconto',
+                    'label'=>'Aluno',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'plano',
+                    'label'=>'Plano',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'idPlano',
+                    'label'=>'Plano',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'alunos_id',
+                    'label'=>'aluno',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'alunos_idDesconto',
+                    'label'=>'alunoDesconto',
+                    'rules'=>'trim|xss_clean'
+                ),
+                array(
+                    'field'=>'tipo',
+                    'label'=>'Tipo',
+                    'rules'=>'required|trim|xss_clean'
+                ))
+,
                 'receita_parc' => array(array(
                                     'field'=>'descricao_parc',
                                     'label'=>'Descrição',
@@ -455,6 +522,11 @@ $config = array('clientes' => array(array(
                                 array(
                                     'field'=>'clienteDesconto',
                                     'label'=>'Cliente',
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'alunoDesconto',
+                                    'label'=>'Aluno',
                                     'rules'=>'trim|xss_clean'
                                 ),
                                 array(

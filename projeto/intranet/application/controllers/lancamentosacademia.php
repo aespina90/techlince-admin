@@ -10,7 +10,7 @@ class Lancamentosacademia extends CI_Controller {
         	redirect('mapos/login');
         }
         $this->load->model('lancamentosacademia_model','',TRUE);
-        $this->data['menuAcademia'] = 'mensalidadesAcademia';
+        $this->data['menuAcademia'] = 'Mensalidades Academia';
         $this->load->helper(array('codegen_helper'));
 	}
 	public function index(){
@@ -203,150 +203,11 @@ class Lancamentosacademia extends CI_Controller {
         $config['next_tag_close'] = '</li>';	
         $this->pagination->initialize($config); 	
 
-		$this->data['results'] = $this->lancamentosacademia_model->get('lancamentos_academia','idLancamentosAcademia,descricao,valor,data_vencimento,baixado,clienteResponsavel,tipo,forma_pgto,servico,idServicos,clientes_id',$where,$config['per_page'],$this->uri->segment(3));
+		$this->data['results'] = $this->lancamentosacademia_model->get('lancamentos_academia','idLancamentosAcademia,descricao,valor,data_vencimento,baixado,alunoResponsavel,tipo,forma_pgto,plano,idPlanos,alunos_id',$where,$config['per_page'],$this->uri->segment(3));
        
 	    $this->data['view'] = 'mensalidadesAcademia/mensalidadesAcademia';
        	$this->load->view('tema/topo',$this->data);
 	}
-
-
-	function adicionarReceita_parc() {
-
-        $this->load->library('form_validation');
-        $this->data['custom_error'] = '';
-        $urlAtual = $this->input->post('urlAtual');
-        if ($this->form_validation->run('receita_parc') == false) {
-            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
-        } else {
-			$qtdparcelas_parc = $this->input->post('qtdparcelas_parc');
-			$entrada = $this->input->post('entrada');
-			$valor_parc = $this->input->post('valor_parc');
-			$valorparcelas = ($valor_parc - $entrada) / $qtdparcelas_parc;
-
-			if($entrada >= $valor_parc){
-				$this->session->set_flashdata('error','O valor da entrada não pode ser maior ou igual ao valor total da receita!');
-				redirect($urlAtual);
-			}
-			
-			$dia_pgto = $this->input->post('dia_pgto');
-			$dia_base_pgto = $this->input->post('dia_base_pgto');
-
-            try {
-                $dia_pgto = explode('/', $dia_pgto);
-                $dia_pgto = $dia_pgto[2].'-'.$dia_pgto[1].'-'.$dia_pgto[0];
-                
-                $dia_base_pgto = explode('/', $dia_base_pgto);
-                $dia_base_pgto = $dia_base_pgto[2].'-'.$dia_base_pgto[1].'-'.$dia_base_pgto[0];
-
-            } catch (Exception $e) {
-               $dia_pgto = date('Y/m/d');
-               $dia_base_pgto = date('Y/m/d');
-            }
-
-		if($entrada == 0){
-			$loops = 1;
-			while ($loops <= $qtdparcelas_parc){
-
-            $myDateTimeISO = $dia_base_pgto;
-            $loopsmes = $loops - 1;
-			$addThese = $loopsmes;
-			$myDateTime = new DateTime($myDateTimeISO);
-			$myDayOfMonth = date_format($myDateTime,'j');
-			date_modify($myDateTime,"+$addThese months");
-
-			//Find out if the day-of-month has dropped
-			$myNewDayOfMonth = date_format($myDateTime,'j');
-			if ($myDayOfMonth > 28 && $myNewDayOfMonth < 4){
-			//If so, fix by going back the number of days that have spilled over
-			    date_modify($myDateTime,"-$myNewDayOfMonth days");
-			}
-
-			$data = array(
-                'descricao' => $this->input->post('descricao_parc'),
-				'valor' => $valorparcelas,
-				'data_vencimento' => date_format($myDateTime,"Y-m-d"),
-				'baixado' => 0,
-				'clienteResponsavel' => $this->input->post('cliente_parc'),
-				'forma_pgto' => $this->input->post('formaPgto_parc'),
-				'tipo' => $this->input->post('tipo_parc'),
-				'clientes_id' => $this->input->post('clientes_id'),
-				'servico' => $this->input->post('servico'),
-				'idServicos' => $this->input->post('idServicos')
-            );
-
-            if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {
-                $this->session->set_flashdata('success','Receita adicionada com sucesso!');
-
-            } else {
-                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
-            }
-			$loops++;
-			}
-
-			redirect($urlAtual);
-
-		}else{
-			$data1 = array(
-                'descricao' => $this->input->post('descricao_parc'),
-				'valor' => $entrada,
-				'data_vencimento' => $dia_pgto,
-				'baixado' => 1,
-				'clienteResponsavel' => $this->input->post('cliente_parc'),
-				'forma_pgto' => $this->input->post('formaPgto_parc'),
-				'tipo' => $this->input->post('tipo_parc'),
-				'clientes_id' => $this->input->post('clientes_id'),
-				'servico' => $this->input->post('servico'),
-				'idServicos' => $this->input->post('idServicos')
-            );
-			$this->lancamentosacademia_model->add1('lancamentos_academia',$data1);
-			
-			$loops = 1;
-			while ($loops <= $qtdparcelas_parc){
-            $myDateTimeISO = $dia_base_pgto;
-            $loopsmes = $loops - 1;
-			$addThese = $loopsmes;
-			$myDateTime = new DateTime($myDateTimeISO);
-			$myDayOfMonth = date_format($myDateTime,'j');
-			date_modify($myDateTime,"+$addThese months");
-
-			//Find out if the day-of-month has dropped
-			$myNewDayOfMonth = date_format($myDateTime,'j');
-			if ($myDayOfMonth > 28 && $myNewDayOfMonth < 4){
-			//If so, fix by going back the number of days that have spilled over
-			    date_modify($myDateTime,"-$myNewDayOfMonth days");
-			}
-			$data = array(
-                'descricao' => $this->input->post('descricao_parc').' - Parcela ['.$loops.'/'.$qtdparcelas_parc.']',
-				'valor' => $this->input->post('valorparcelas'),
-				'data_vencimento' => date_format($myDateTime,"Y-m-d"),
-				'baixado' => 0,
-				'clienteResponsavel' => $this->input->post('cliente_parc'),
-				'forma_pgto' => $this->input->post('formaPgto_parc'),
-				'tipo' => $this->input->post('tipo_parc'),
-				'clientes_id' => $this->input->post('clientes_id'),
-				'servico' => $this->input->post('servico'),
-				'idServicos' => $this->input->post('idServicos')
-            );
-
-            if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {
-                $this->session->set_flashdata('success','Receita adicionada com sucesso!');
-            }
-             else {
-                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
-            }
-			$loops++;
-			}
-
-			redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
-			
-		}
-}
-
-        $this->session->set_flashdata('error','Ocorreu um erro ao tentar adicionar receita.');
-        redirect(base_url() . 'index.php/mensalidades/mensalidades/');
-		
-    }
-
 
 
 	function adicionarReceita() {
@@ -374,15 +235,13 @@ class Lancamentosacademia extends CI_Controller {
 				'valor' => set_value('valor'),
 				'data_vencimento' => $vencimento,
 				'baixado' => $this->input->post('recebido'),
-				'clienteResponsavel' => set_value('clientePagamento'),
+				'alunoResponsavel' => set_value('alunoPagamento'),
 				'forma_pgto' => $this->input->post('formaPgto'),
 				'tipo' => set_value('tipo'),
-				'clientes_id' => $this->input->post('clientes_idPagamento'),
-				'idServicos' => $this->input->post('idServicoPagamento'),
-				'servico' => set_value('servicoPagamento')
+				'alunos_id' => $this->input->post('alunos_id')
             );
 
-            if ($this->lancamentosAcademia_model->add('lancamentos_academia',$data) == TRUE) {
+            if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {
                 $this->session->set_flashdata('success','Receita adicionada com sucesso!');
                 redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
             } else {
@@ -421,12 +280,10 @@ class Lancamentosacademia extends CI_Controller {
 				'valor' => set_value('valor'),
 				'data_vencimento' => $vencimento,
 				'baixado' => $this->input->post('pago'),
-				'clienteResponsavel' => set_value('clienteDesconto'),
+				'alunoResponsavel' => set_value('alunoDesconto'),
 				'forma_pgto' => $this->input->post('formaPgto'),
 				'tipo' => set_value('tipo'),
-				'clientes_id' => $this->input->post('clientes_idDesconto'),
-				'servico' => set_value('servicoDesconto'),
-				'idServicos' => $this->input->post('idServicoDesconto')
+				'alunos_id' => $this->input->post('alunos_idDesconto')
             );
 
             if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {
@@ -453,8 +310,8 @@ class Lancamentosacademia extends CI_Controller {
 
         $this->form_validation->set_rules('descricao', '', 'required|trim|xss_clean');
         $this->form_validation->set_rules('valor', '', 'trim|xss_clean');
-		$this->form_validation->set_rules('servico', '', 'trim|xss_clean');
-		$this->form_validation->set_rules('clienteResponsavel', '', 'trim|xss_clean');
+		$this->form_validation->set_rules('plano', '', 'trim|xss_clean');
+		$this->form_validation->set_rules('alunoResponsavel', '', 'trim|xss_clean');
         $this->form_validation->set_rules('pagamento', '', 'trim|xss_clean');
 
         if ($this->form_validation->run() == false) {
@@ -477,12 +334,12 @@ class Lancamentosacademia extends CI_Controller {
                 'valor' => $this->input->post('valor'),
                 'data_vencimento' => $vencimento,
                 'baixado' => $this->input->post('pago'),
-				'idServicos' => $this->input->post('idServicos'),
-				'servico' => $this->input->post('servico'),
+				'idPlanos' => $this->input->post('idPlanos'),
+				'plano' => $this->input->post('plano'),
                 'forma_pgto' => $this->input->post('formaPgto'),
                 'tipo' => $this->input->post('tipo'),
-				'clienteResponsavel' => set_value('clienteResponsavel'),
-				'clientes_id' => $this->input->post('clientes_id'),
+				'alunoResponsavel' => set_value('alunoResponsavel'),
+				'alunos_id' => $this->input->post('alunos_id'),
 				'aparece_no_caixa' => $this->input->post('pago')
             );
 
@@ -491,13 +348,13 @@ class Lancamentosacademia extends CI_Controller {
 
             } else {
                 $this->session->set_flashdata('error','Ocorreu um erro ao tentar editar lançamento!');
-				redirect(base_url() . 'index.php/servicos/servicos/');
+				redirect(base_url() . 'index.php/planos/planos/');
 
             }
         }
 		
 		$this->session->set_flashdata('error','');
-        redirect(base_url() . 'index.php/servicos/servicos/');
+        redirect(base_url() . 'index.php/planos/planos/');
 
     }
 

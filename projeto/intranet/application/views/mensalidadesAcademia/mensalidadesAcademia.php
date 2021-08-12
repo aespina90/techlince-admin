@@ -15,46 +15,20 @@
   </div>
   <div class="modal-body">
   <div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
-  		<div class="span12" style="margin-left: 0">
-            <label for="">Equipe</label>
-            <input type="text" class="span12" name="servicoPagamento" id="servicoPagamento" placeholder="Digite o nome da EQUIPE" />
-			<input type="hidden" name="idServicoPagamento" id="idServicoPagamento"/>
-    	</div>
-
 		<div class="span12" style="margin-left: 0">
     	<div class="span6"> 
     		<label for="descricao">Descrição*</label>
 			<select name="descricao" id="descricao" class="span12" value="descricao">
 						<option value="Pagamento Integral">Pagamento Integral</option>
-		    			<option value="Pagamento Parcial">Pagamento Parcial</option>			
-		    			<option value="Crédito">Crédito</option>		
 		    </select>
     	</div>
-<!--
-		<div class="span6"> 
-    		<label for="periodo">Período/Mês*</label>
-			<select name="periodo" id="periodo" class="span12" value="periodo">
-						<option value="janeiro">Janeiro</option>
-		    			<option value="fevereiro">Fevereiro</option>			
-		    			<option value="marco">Março</option>
-						<option value="abril">Abril</option>
-		    			<option value="maio">Maio</option>			
-		    			<option value="junho">Junho</option>	
-						<option value="julho">Julho</option>
-		    			<option value="agosto">Agosto</option>			
-		    			<option value="setembro">Setembro</option>	
-						<option value="outubro">Outubro</option>
-		    			<option value="novembro">Novembro</option>			
-		    			<option value="dezembro">Dezembro</option>			
-		    </select>
-    	</div>-->
 		</div>
     	
     	<div class="span12" style="margin-left: 0"> 
     		<div class="span12" style="margin-left: 0"> 
-    			<label for="cliente">Cliente</label>
-    			<input class="span12" id="clientePagamento" type="text" name="clientePagamento" value="" autocomplete="off" />
-    			<input id="clientes_idPagamento" class="span12" type="hidden" name="clientes_idPagamento" value=""  />
+    			<label for="aluno">Aluno</label>
+    			<input class="span12" id="alunoPagamento" type="text" name="alunoPagamento" value="" autocomplete="off" />
+    			<input id="alunos_id" class="span12" type="hidden" name="alunos_id" value=""  />
     		</div>
     	</div>
 
@@ -80,27 +54,6 @@
 	
     	<div class="span12" style="margin-left: 0">
     	
-    		<div class="span4" style="margin-left: 0">
-		    		<label for="qtdparcelas">Qtd Parcelas</label>
-		    		<select name="qtdparcelas" id="qtdparcelas" class="span12">
-		    			<option value="0">Pagamento à vista</option>
-		    			<option value="1">1x</option>			
-		    			<option value="2">2x</option>			
-		    			<option value="3">3x</option>			
-		    			<option value="4">4x</option>			
-		    			<option value="5">5x</option>			
-		    			<option value="6">6x</option>			
-		    			<option value="7">7x</option>			
-		    			<option value="8">8x</option>			
-		    			<option value="9">9x</option>			
-		    			<option value="10">10x</option>			
-		    			<option value="11">11x</option>			
-		    			<option value="12">12x</option>			
-		    		</select>
-		    	<a href="#modalReceitaParcelada" id="abrirmodalreceitaparcelada" data-toggle="modal" style="display: none;" role="button"> </a>
-		    
-	    	</div>
-			
     		<div class="span4">
     			
 	    			<label for="recebido">Recebido?</label>
@@ -123,7 +76,7 @@
   </div>
   <div class="modal-footer">
     <button id="cancelar_nova_receita" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <button class="btn btn-success">Adicionar Receita</button>
+    <button class="btn btn-success">Adicionar Pagamento</button>
   </div>
   </form>
 </div>
@@ -164,16 +117,11 @@
 		-->
 
     	<div class="span12" style="margin-left: 0"> 
-		<div class="span12" style="margin-left: 0">
-            <label for="">Equipe</label>
-            <input type="text" class="span12" name="servicoDesconto" id="servicoDesconto" placeholder="Digite o nome da EQUIPE" autocomplete="off" />
-			<input type="hidden" name="idServicoDesconto" id="idServicoDesconto"/>
-    	</div>
     	<div class="span12" style="margin-left: 0"> 
     		<div class="span12" style="margin-left: 0"> 
-    			<label for="cliente">Cliente</label>
-    			<input class="span12" id="clienteDesconto" type="text" name="clienteDesconto" value="" autocomplete="off" />
-    			<input id="clientes_idDesconto" class="span12" type="hidden" name="clientes_idDesconto" value=""  />
+    			<label for="alunoDesconto">Aluno</label>
+    			<input class="span12" id="alunoDesconto" type="text" name="alunoDesconto" value="" autocomplete="off" />
+    			<input id="alunos_idDesconto" class="span12" type="hidden" name="alunos_idDesconto" value=""  />
     		</div>
     	</div>
     		
@@ -215,3 +163,75 @@
 </div>
 
 <script src="<?php echo base_url();?>js/maskmoney.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".money").maskMoney();
+
+
+   $(document).on('click', 'a', function(event) {
+        
+        var os = $(this).attr('os');
+        $('#idOs').val(os);
+
+    });
+    
+	$("#aluno").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompleteAluno",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#alunos_id").val(ui.item.id);
+                 $("#plano").focus();
+            }
+      })
+	  $("#alunoPagamento").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompleteAluno",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#alunos_idPagamento").val(ui.item.id);
+                 $("#plano").focus();
+            }
+      })
+	  $("#alunoDesconto").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompleteAluno",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#alunos_idDesconto").val(ui.item.id);
+                 $("#plano").focus();
+            }
+      })
+      
+      
+	  $("#plano").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompletePlano",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#idPlano").val(ui.item.id);
+            }
+      });
+	  $("#planoPagamento").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompletePlano",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#idPlanoPagamento").val(ui.item.id);
+            }
+      });
+	  $("#planoDesconto").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompletePlano",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#idPlanoDesconto").val(ui.item.id);
+            }
+      });
+
+
+	   $(".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+
+});
+
+</script>

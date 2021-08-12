@@ -24,9 +24,10 @@ class Os_model extends CI_Model {
     }
 
     function getById($id){
-        $this->db->select('os.*, clientes.*, usuarios.telefone, usuarios.email,usuarios.nome');
+        $this->db->select('os.*, clientes.*, alunos.*, usuarios.telefone, usuarios.email,usuarios.nome');
         $this->db->from('os');
         $this->db->join('clientes','clientes.idClientes = os.clientes_id');
+        $this->db->join('alunos','alunos.idAlunos = os.alunoss_id');
         $this->db->join('usuarios','usuarios.idUsuarios = os.usuarios_id');
         $this->db->where('os.idOs',$id);
         $this->db->limit(1);
@@ -45,6 +46,14 @@ class Os_model extends CI_Model {
         $this->db->select('servicos_os.*, servicos.*');
         $this->db->from('servicos_os');
         $this->db->join('servicos','servicos.idServicos = servicos_os.servicos_id');
+        $this->db->where('os_id',$id);
+        return $this->db->get()->result();
+    }
+
+    public function getPlanos($id = null){
+        $this->db->select('planos_os.*, planos.*');
+        $this->db->from('planos_os');
+        $this->db->join('planos','planos.idPlanos = planos_os.planos_id');
         $this->db->where('os_id',$id);
         return $this->db->get()->result();
     }
@@ -119,6 +128,21 @@ class Os_model extends CI_Model {
         }
     }
 
+    public function autoCompleteAluno($q){
+
+        $this->db->select('*');
+        $this->db->limit(5);
+        $this->db->like('nomeAluno', $q);
+        $this->db->where('ativo',1);
+        $query = $this->db->get('alunos');
+        if($query->num_rows > 0){
+            foreach ($query->result_array() as $row){
+                $row_set[] = array('label'=>$row['nomeAluno'].' | Telefone: '.$row['telefone'],'id'=>$row['idAlunos']);
+            }
+            echo json_encode($row_set);
+        }
+    }
+
     public function autoCompleteUsuario($q){
 
         $this->db->select('*');
@@ -143,6 +167,20 @@ class Os_model extends CI_Model {
         if($query->num_rows > 0){
             foreach ($query->result_array() as $row){
                 $row_set[] = array('label'=>$row['nome'].' | Preço: R$ '.$row['preco'],'id'=>$row['idServicos'],'preco'=>$row['preco']);
+            }
+            echo json_encode($row_set);
+        }
+    }
+
+    public function autoCompletePlano($q){
+
+        $this->db->select('*');
+        $this->db->limit(5);
+        $this->db->like('nome', $q);
+        $query = $this->db->get('planos');
+        if($query->num_rows > 0){
+            foreach ($query->result_array() as $row){
+                $row_set[] = array('label'=>$row['nome'].' | Preço: R$ '.$row['preco'],'id'=>$row['idPlanos'],'preco'=>$row['preco']);
             }
             echo json_encode($row_set);
         }

@@ -188,7 +188,6 @@ class Alunos extends CI_Controller {
 
         $this->data['custom_error'] = '';
         $this->data['result'] = $this->alunos_model->getById($this->uri->segment(3));
-        $this->data['results'] = $this->alunos_model->getOsByAluno($this->uri->segment(3));
         $this->data['transacoes'] = $this->alunos_model->getLancamentosByAluno($this->uri->segment(3));
         $this->data['view'] = 'alunos/visualizar';
         $this->load->view('tema/topo', $this->data);

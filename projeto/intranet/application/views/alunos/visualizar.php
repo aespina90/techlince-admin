@@ -1,8 +1,8 @@
 <div class="widget-box">
     <div class="widget-title">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#tab1">Dados do Cliente</a></li>
-            <!-- <li><a data-toggle="tab" href="#tab2">Transações</a></li> -->
+            <li class="active"><a data-toggle="tab" href="#tab1">Dados do Aluno</a></li>
+            <li><a data-toggle="tab" href="#tab2">Transações</a></li>
             <!-- <li><a data-toggle="tab" href="#tab3">Orçamentos</a></li> -->
             <div class="buttons">
                     <a title="Icon Title" class="btn btn-mini btn-info" href="<?php echo base_url()?>index.php/alunos/editar/<?php echo $result->idAlunos?>"><i class="icon-pencil icon-white"></i> Editar</a>
@@ -28,7 +28,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="text-align: right; width: 30%"><strong>Nome</strong></td>
-                                                    <td><?php echo $result->nomeCliente ?></td>
+                                                    <td><?php echo $result->nomeAluno ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align: right; width: 30%"><strong>Apelido</strong></td>
@@ -147,7 +147,6 @@
 			        <tr style="backgroud-color: #2D335B">
 			            <th>#</th>
 			            <th>Tipo</th>
-			            <th>Aluno</th>
 			            <th>Descrição</th>
 			            <th>Vencimento</th>
 			            <th>Status</th>
@@ -179,12 +178,11 @@
 			<div class="widget-content nopadding">
 
 
-			<table class="table table-bordered " id="divLancamentos">
+			<table class="table table-bordered " id="divLancamentosAcademia">
 			    <thead>
 			        <tr style="backgroud-color: #2D335B">
 			            <th>#</th>
 			            <th>Tipo</th>
-			            <th>Aluno</th>
 			            <th width="20%">Descrição</th>
 			            <th>Vencimento</th>
 			            <th>Status</th>
@@ -202,17 +200,16 @@
 			            if($r->baixado == 0){$status = 'Pendente';}else{ $status = 'Pago';};
 			            if($r->tipo == 'receita'){ $label = 'success'; $totalReceita += $r->valor;} else{$label = 'important'; $totalDespesa += $r->valor;}
 			            echo '<tr>'; 
-			            echo '<td>'.$r->idLancamentos.'</td>';
+			            echo '<td>'.$r->idLancamentosAcademia.'</td>';
 			            echo '<td><span class="label label-'.$label.'">'.ucfirst($r->tipo).'</span></td>';
-			            echo '<td>'.$r->cliente_fornecedor.'</td>';
 			            echo '<td>'.$r->descricao.'</td>';
 			            echo '<td>'.$vencimento.'</td>';   
 			            echo '<td>'.$status.'</td>';
 			            echo '<td> R$ '.number_format($r->valor,2,',','.').'</td>';
 			            
 			            echo '<td>
-			                      <a href="#modalEditar" data-toggle="modal" role="button" idLancamento="'.$r->idLancamentos.'" descricao="'.$r->descricao.'" valor="'.$r->valor.'" vencimento="'.date('d/m/Y',strtotime($r->data_vencimento)).'" baixado="'.$r->baixado.'" cliente="'.$r->cliente_fornecedor.'" formaPgto="'.$r->forma_pgto.'" tipo="'.$r->tipo.'" class="btn btn-info tip-top editar" title="Editar Lançamento"><i class="icon-pencil icon-white"></i></a>
-			                      <a href="#modalExcluir" data-toggle="modal" role="button" idLancamento="'.$r->idLancamentos.'" class="btn btn-danger tip-top excluir" title="Excluir Lançamento"><i class="icon-remove icon-white"></i></a>
+			                      <a href="#modalEditar" data-toggle="modal" role="button" idLancamentosAcademia="'.$r->idLancamentosAcademia.'" descricao="'.$r->descricao.'" valor="'.$r->valor.'" vencimento="'.date('d/m/Y',strtotime($r->data_vencimento)).'" baixado="'.$r->baixado.'" aluno="'.$r->alunoResponsavel.'" formaPgto="'.$r->forma_pgto.'" tipo="'.$r->tipo.'" class="btn btn-info tip-top editar" title="Editar Lançamento"><i class="icon-pencil icon-white"></i></a>
+			                      <a href="#modalExcluir" data-toggle="modal" role="button" idLancamentosAcademia="'.$r->idLancamentosAcademia.'" class="btn btn-danger tip-top excluir" title="Excluir Lançamento"><i class="icon-remove icon-white"></i></a>
 			                  </td>';
 			            echo '</tr>';
 			        }?>
@@ -443,14 +440,14 @@
     
 
     $(document).on('click', '.excluir', function(event) {
-      $("#idExcluir").val($(this).attr('idLancamento'));
+      $("#idExcluir").val($(this).attr('idLancamentosAcademia'));
     });
 
 
     $(document).on('click', '.editar', function(event) {
-      $("#idEditar").val($(this).attr('idLancamento'));
+      $("#idEditar").val($(this).attr('idLancamentosAcademia'));
       $("#descricaoEditar").val($(this).attr('descricao'));
-      $("#fornecedorEditar").val($(this).attr('cliente'));
+      $("#fornecedorEditar").val($(this).attr('aluno'));
       $("#valorEditar").val($(this).attr('valor'));
       $("#vencimentoEditar").val($(this).attr('vencimento'));
       $("#pagamentoEditar").val($(this).attr('pagamento'));
@@ -475,20 +472,20 @@
     
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url();?>index.php/financeiro/excluirLancamento",
+          url: "<?php echo base_url();?>index.php/lancamentosacademia/excluirLancamento",
           data: "id="+id,
           dataType: 'json',
           success: function(data)
           {
             if(data.result == true){
                 $("#btnCancelExcluir").trigger('click');
-                $("#divLancamentos").html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
-                $("#divLancamentos").load( $(location).attr('href')+" #divLancamentos" );
+                $("#divLancamentosAcademia").html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+                $("#divLancamentosAcademia").load( $(location).attr('href')+" #divLancamentosAcademia" );
                 
             }
             else{
                 $("#btnCancelExcluir").trigger('click');
-                alert('Ocorreu um erro ao tentar excluir produto.');
+                alert('Ocorreu um erro ao tentar excluir o Aluno.');
             }
           }
         });

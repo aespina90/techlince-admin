@@ -69,7 +69,6 @@ else{ ?>
             echo '<td>'.$r->descricao.'</td>';
             echo '<td>'.number_format($r->preco,2,',','.').'</td>';
             echo '<td>
-                      <a href="'.base_url().'index.php/planos/visualizar/'.$r->idPlanos.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
                       <a href="'.base_url().'index.php/planos/editar/'.$r->idPlanos.'" class="btn btn-info tip-top" title="Editar Plano"><i class="icon-pencil icon-white"></i></a>
                       <a href="#modal-excluir" role="button" data-toggle="modal" plano="'.$r->idPlanos.'" class="btn btn-danger tip-top" title="Excluir Plano"><i class="icon-remove icon-white"></i></a>  
                   </td>';

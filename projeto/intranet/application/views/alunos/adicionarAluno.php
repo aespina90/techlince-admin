@@ -57,14 +57,14 @@
                     <div class="control-group" class="control-label">
                         <label for="rua" class="control-label">Endereço</label>
                         <div class="controls">
-                            <input id="rua" type="text" name="rua" autocomplete="off" value="<?php echo set_value('rua'); ?>"  />
+                            <input id="rua" type="text" name="rua" autocomplete="off" value="<?php echo set_value('rua'); ?>Nome da Rua"  />
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label for="numero" class="control-label">Número</label>
                         <div class="controls">
-                            <input id="numero" type="text" name="numero" autocomplete="off" value="<?php echo set_value('numero'); ?>"  />
+                            <input id="numero" type="text" name="numero" autocomplete="off" value="<?php echo set_value('numero'); ?>S/N"  />
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
                     <div class="control-group" class="control-label">
                         <label for="cep" class="control-label">CEP</label>
                         <div class="controls">
-                            <input id="cep" type="text" name="cep" autocomplete="off" value="<?php echo set_value('cep'); ?>"  />
+                            <input id="cep" type="text" name="cep" autocomplete="off" value="<?php echo set_value('cep'); ?>00.000-00"  />
                         </div>
             </div>
 
@@ -124,7 +124,7 @@ $("#nascimento").mask("99/99/9999");
 
            $('#formAluno').validate({
             rules :{
-                  nomeAluno:{ required: false},
+                  nomeAluno:{ required: true},
                   apelido:{ required: false},
                   rg:{ required: false},
                   cpf:{ required: false},

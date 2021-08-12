@@ -65,9 +65,9 @@
   <div class="modal-body">
     	<div class="span12" style="margin-left: 0"> 
     		<div class="span12" style="margin-left: 0"> 
-    			<label for="cliente">Aluno</label>
-    			<input class="span12" id="cliente" type="text" name="cliente" value=""/>
-    			<input id="clientes_id" class="span12" type="hidden" name="clientes_id" value=""  />
+    			<label for="aluno">Aluno</label>
+    			<input class="span12" id="aluno" type="text" name="aluno" value=""/>
+    			<input id="alunos_id" class="span12" type="hidden" name="alunos_id" value=""  />
     		</div>
     	</div>
   </div>
@@ -98,11 +98,11 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-      $("#cliente").autocomplete({
-            source: "<?php echo base_url(); ?>index.php/acompanhamento/autoCompleteCliente",
+      $("#aluno").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/acompanhamento/autoCompleteAluno",
             minLength: 2,
             select: function( event, ui ) {
-                 $("#clientes_id").val(ui.item.id);
+                 $("#alunos_id").val(ui.item.id);
             }
       })
 
