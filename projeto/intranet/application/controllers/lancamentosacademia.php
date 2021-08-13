@@ -238,7 +238,7 @@ class Lancamentosacademia extends CI_Controller {
 				'alunoResponsavel' => set_value('alunoPagamento'),
 				'forma_pgto' => $this->input->post('formaPgto'),
 				'tipo' => set_value('tipo'),
-				'alunos_id' => $this->input->post('alunos_id')
+				'alunos_id' => $this->input->post('alunos_idPagamento')
             );
 
             if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {

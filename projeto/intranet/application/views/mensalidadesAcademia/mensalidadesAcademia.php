@@ -28,7 +28,7 @@
     		<div class="span12" style="margin-left: 0"> 
     			<label for="aluno">Aluno</label>
     			<input class="span12" id="alunoPagamento" type="text" name="alunoPagamento" value="" autocomplete="off" />
-    			<input id="alunos_id" class="span12" type="hidden" name="alunos_id" value=""  />
+    			<input id="alunos_idPagamento" class="span12" type="hidden" name="alunos_idPagamento" value=""  />
     		</div>
     	</div>
 
