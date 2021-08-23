@@ -1,7 +1,61 @@
-<a href="<?php echo base_url();?>index.php/alunos/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Novo Aluno</a>
+<link rel="stylesheet" href="<?php echo base_url();?>js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery.validate.js"></script>
+<!--<a href="<?php echo base_url();?>index.php/alunos/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Novo Aluno</a>-->
+
+<a href="#modalPgtoAcademia" data-toggle="modal" role="button" class="btn btn-success tip-bottom" title="Lançar Pagamento Academia"><i class="icon-plus icon-white"></i> Lançar Pagamento</a>
 <a href="<?php echo base_url();?>index.php/alunos/desativados" class="btn btn-link"> Alunos Desativados</a>
 
 <a href="<?php echo base_url()?>index.php/relatorios/alunos" class="btn btn-success" style="float:right;">Relatório</a>
+
+<!-- Modal Novo Pagamento Academia -->
+<div id="modalPgtoAcademia" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <form id="formReceita" action="<?php echo base_url() ?>index.php/lancamentosacademia/adicionarReceita" method="post">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Adicionar Pagamento Academia - Receita</h3>
+  </div>
+  <div class="modal-body">
+  <div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
+		<div class="span12" style="margin-left: 0">
+    	<div class="span6"> 
+    		<label for="descricao">Descrição*</label>
+			<select name="descricao" id="descricao" class="span12" value="descricao">
+						<option value="Pagamento Integral">Pagamento Mensalidade Academia</option>
+		    </select>
+    	</div>
+		</div>
+    	
+    	<div class="span12" style="margin-left: 0"> 
+    		<div class="span12" style="margin-left: 0"> 
+    			<label for="aluno">Aluno</label>
+    			<input class="span12" id="alunoPagamento" type="text" name="alunoPagamento" value="" autocomplete="off" />
+    			<input id="alunos_idPagamento" class="span12" type="hidden" name="alunos_idPagamento" value=""  />
+    		</div>
+    	</div>
+
+    	<div class="span12" style="margin-left: 0"> 
+    		<div class="span4" style="margin-left: 0">  
+    			<label for="valor">Valor*</label>
+    			<input type="hidden" id="tipo" name="tipo" value="receita" />	
+    			<input class="span12 money" id="valor" type="text" name="valor" autocomplete="off"/>
+    		</div>
+    	
+      
+	    	<div class="span4">
+	    		<label for="vencimento">Data Pgto*</label>
+	    		<input class="span12 datepicker" id="vencimento" type="text" name="vencimento" autocomplete="off" />
+	    	</div>
+	    	
+    	</div>
+
+  </div>
+  <div class="modal-footer">
+    <button id="cancelar_nova_receita" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+    <button class="btn btn-success">Adicionar Pagamento</button>
+  </div>
+  </form>
+</div>
 
 <?php
 if(!$results){?>
@@ -20,10 +74,10 @@ if(!$results){?>
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Apelido</th>
+                     
                         <th>E-mail</th>
                         <th>Telefone</th>
-                        <th>Atualizações</th>
+                      
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -56,10 +110,10 @@ if(!$results){?>
     <thead>
         <tr>
         <th>Nome</th>
-        <th>Apelido</th>
+       
         <th>E-mail</th>
         <th>Telefone</th>
-        <th>Atualizações</th>
+      
         <th>Ações</th>
         </tr>
     </thead>
@@ -67,10 +121,10 @@ if(!$results){?>
         <?php foreach ($results as $r) {
             echo '<tr>';
             echo '<td><b>'.$r->nomeAluno.'</b></td>';
-            echo '<td><b>'.$r->apelido.'</b></td>';
+          
             echo '<td>'.$r->email.'</td>';
             echo '<td><center>'.$r->telefone.'</center></td>';
-            if ($r->update == 0){echo "<td><center>Não Receber</center></td>";}else{echo "<td><center>Receber</center></td>";}'</td>';
+         
             echo '<td>
             		<a href="'.base_url().'index.php/alunos/visualizar/'.$r->idAlunos.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
                     
@@ -111,17 +165,80 @@ if(!$results){?>
   </form>
 </div>
 
+<script src="<?php echo base_url();?>js/maskmoney.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$(".money").maskMoney();
 
 
-   $(document).on('click', 'a', function(event) {
-        
-        var aluno = $(this).attr('aluno');
-        $('#idAluno').val(aluno);
+
+
+    $(document).on('click', 'a', function(event) {
+     
+     var aluno = $(this).attr('aluno');
+     $('#idAluno').val(aluno);
 
     });
 
+    
+	$("#aluno").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompleteAluno",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#alunos_id").val(ui.item.id);
+                 $("#plano").focus();
+            }
+      })
+	  $("#alunoPagamento").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompleteAluno",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#alunos_idPagamento").val(ui.item.id);
+                 $("#plano").focus();
+            }
+      })
+	  $("#alunoDesconto").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompleteAluno",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#alunos_idDesconto").val(ui.item.id);
+                 $("#plano").focus();
+            }
+      })
+      
+      
+	  $("#plano").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompletePlano",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#idPlano").val(ui.item.id);
+            }
+      });
+	  $("#planoPagamento").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompletePlano",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#idPlanoPagamento").val(ui.item.id);
+            }
+      });
+	  $("#planoDesconto").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/os/autoCompletePlano",
+            minLength: 2,
+            select: function( event, ui ) {
+
+                 $("#idPlanoDesconto").val(ui.item.id);
+            }
+      });
+
+
+	   $(".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+
 });
+
 
 </script>

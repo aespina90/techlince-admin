@@ -243,14 +243,14 @@ class Lancamentosacademia extends CI_Controller {
 
             if ($this->lancamentosacademia_model->add('lancamentos_academia',$data) == TRUE) {
                 $this->session->set_flashdata('success','Receita adicionada com sucesso!');
-                redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
+                redirect(base_url() . 'index.php/alunos/alunos/');
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }
 
         $this->session->set_flashdata('error','Ocorreu um erro ao tentar adicionar receita.');
-        redirect(base_url() . 'index.php/mensalidadesAcademia/mensalidadesAcademia/');
+        redirect(base_url() . 'index.php/alunos/alunos/');
         
     }
 

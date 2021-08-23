@@ -184,8 +184,7 @@
 			            <th>#</th>
 			            <th>Tipo</th>
 			            <th width="20%">Descrição</th>
-			            <th>Vencimento</th>
-			            <th>Status</th>
+			            <th>Data Pgto</th>
 			            <th>Valor</th>
 			            <th></th>
 			        </tr>
@@ -203,8 +202,7 @@
 			            echo '<td>'.$r->idLancamentosAcademia.'</td>';
 			            echo '<td><span class="label label-'.$label.'">'.ucfirst($r->tipo).'</span></td>';
 			            echo '<td>'.$r->descricao.'</td>';
-			            echo '<td>'.$vencimento.'</td>';   
-			            echo '<td>'.$status.'</td>';
+			            echo '<td>'.$vencimento.'</td>';
 			            echo '<td> R$ '.number_format($r->valor,2,',','.').'</td>';
 			            
 			            echo '<td>

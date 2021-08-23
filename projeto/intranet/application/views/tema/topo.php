@@ -176,7 +176,7 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
       <ul>
         <li><a href="<?php echo base_url()?>index.php/alunos">Alunos</a></li>
         <li><a href="<?php echo base_url()?>index.php/planos">Planos</a></li>
-        <li><a href="<?php echo base_url()?>index.php/mensalidadesAcademia">Mensalidades</a></li>
+        <!--<li><a href="<?php echo base_url()?>index.php/mensalidadesAcademia">Mensalidades</a></li> -->
         <li><a href="<?php echo base_url()?>index.php/acompanhamento">Acompanhamento</a></li>
       </ul>
     </li>
