@@ -6,7 +6,7 @@
 <a href="#modalPgtoAcademia" data-toggle="modal" role="button" class="btn btn-success tip-bottom" title="Lançar Pagamento Academia"><i class="icon-plus icon-white"></i> Lançar Pagamento</a>
 <a href="<?php echo base_url();?>index.php/alunos/desativados" class="btn btn-link"> Alunos Desativados</a>
 
-<a href="<?php echo base_url()?>index.php/relatorios/alunos" class="btn btn-success" style="float:right;">Relatório</a>
+<a href="<?php echo base_url()?>index.php/relatorios/alunos" class="btn btn-warning" style="float:right;">Relatórios</a>
 
 <!-- Modal Novo Pagamento Academia -->
 <div id="modalPgtoAcademia" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -75,8 +75,8 @@ if(!$results){?>
                     <tr>
                         <th>Nome</th>
                      
-                        <th>E-mail</th>
-                        <th>Telefone</th>
+                        <th>Data Último Pgto.</th>
+                        <th>Data Próximo Pgto</th>
                       
                         <th>Ações</th>
                     </tr>
@@ -111,8 +111,8 @@ if(!$results){?>
         <tr>
         <th>Nome</th>
        
-        <th>E-mail</th>
-        <th>Telefone</th>
+        <th>Data Último Pgto.</th>
+        <th>Data Próximo Pgto</th>
       
         <th>Ações</th>
         </tr>
@@ -126,6 +126,7 @@ if(!$results){?>
             echo '<td><center>'.$r->telefone.'</center></td>';
          
             echo '<td>
+                    <a href="'.base_url().'index.php/alunos/bloquear/'.$r->idAlunos.'" class="btn  btn-warning tip-top" title="Bloquear entrada"><i class="icon-lock"></i></a>
             		<a href="'.base_url().'index.php/alunos/visualizar/'.$r->idAlunos.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
                     
                     <a href="'.base_url().'index.php/alunos/editar/'.$r->idAlunos.'" class="btn btn-info tip-top" title="Editar Aluno"><i class="icon-pencil icon-white"></i></a>';

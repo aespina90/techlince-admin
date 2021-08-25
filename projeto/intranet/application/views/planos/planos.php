@@ -1,6 +1,6 @@
 <a href="<?php echo base_url()?>index.php/planos/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Cadastrar Novo Plano</a>
 
-<a href="<?php echo base_url()?>index.php/relatorios/planos" class="btn btn-success" style="float:right;">Relatório</a>
+<a href="<?php echo base_url()?>index.php/relatorios/planos" class="btn btn-warning" style="float:right;">Relatórios</a>
 <?php
 
 if(!$results){?>

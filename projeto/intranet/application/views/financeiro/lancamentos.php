@@ -23,25 +23,39 @@
 </style>
 
 <div class="span5" style="margin-left: 0">
-
+	<a href="<?php echo base_url()?>index.php/relatorios/financeiro" class="btn btn-warning" style="float:left;">Relatórios</a> &nbsp;&nbsp;
 	<a href="#modalReceita" data-toggle="modal" role="button" class="btn btn-success tip-bottom" title="Cadastrar nova receita"><i class="icon-plus icon-white"></i> Receita</a>
-	<a href="#modalDespesa" data-toggle="modal" role="button" class="btn btn-danger tip-bottom" title="Cadastrar nova despesa"><i class="icon-plus icon-white"></i> Despesa</a>
+	<a href="#modalDespesa" data-toggle="modal" role="button" class="btn btn-danger tip-bottom" title="Cadastrar nova despesa"><i class="icon-minus icon-white"></i> Despesa</a>
+	
 </div>
+
 <div class="span7">
 	<form action="<?php echo current_url(); ?>" method="get" >
-		<div class="span3" style="margin-left: 0">
+
+	<div class="span3">
+	<label>Pesquisa <i class="icon-info-sign tip-top" title="Pesquisa por DESCRIÇÃO"></i></label>
+	<input type="text" name="termo" placeholder="PESQUISAR"></input>
+	</div>
+		&nbsp; &nbsp;
+		<div class="span3">
 			<label>Período <i class="icon-info-sign tip-top" title="Lançamentos com vencimento no período."></i></label>
 			<select name="periodo" class="span12">
-				<option value="dia">Dia</option>
-				<option value="semana" <?php if($periodo == 'semana'){ echo 'selected';} ?>>Semana</option>
-				<option value="mesanterior" <?php if($periodo == 'mesanterior'){ echo 'selected';} ?>>Últimos Dois Meses</option>
-				<option value="mes" <?php if($periodo == 'mes'){ echo 'selected';} ?>>Mês</option>
-				<option value="anterior" <?php if($periodo == 'anterior'){ echo 'selected';} ?>>Ano Anterior</option>
-				<option value="ano" <?php if($periodo == 'ano'){ echo 'selected';} ?>>Ano Atual</option>
-				<option value="proximo" <?php if($periodo == 'proximo'){ echo 'selected';} ?>>Próximo Ano</option>
+				<option value="dia">DIA ATUAL</option>
+				<option value="dia">DIA ANTERIOR*</option>
+				<option value="dia">PRÓXIMO DIA*</option>
+				<option value="semana" <?php if($periodo == 'semana'){ echo 'selected';} ?>>SEMANA ATUAL</option>
+				<option value="semana" <?php if($periodo == 'semana'){ echo 'selected';} ?>>SEMANA ANTERIOR*</option>
+				<option value="semana" <?php if($periodo == 'semana'){ echo 'selected';} ?>>PRÓXIMA SEMANA*</option>
+				<option value="mes" <?php if($periodo == 'mes'){ echo 'selected';} ?>>MÊS ATUAL</option>
+				<option value="mes" <?php if($periodo == 'mes'){ echo 'selected';} ?>>MÊS ANTERIOR*</option>
+				<option value="mes" <?php if($periodo == 'mes'){ echo 'selected';} ?>>PRÓXIMO MÊS*</option>
+				<option value="ano" <?php if($periodo == 'ano'){ echo 'selected';} ?>>ANO ATUAL</option>
+				<option value="anterior" <?php if($periodo == 'anterior'){ echo 'selected';} ?>>ANO ANTERIOR</option>
+				<option value="proximo" <?php if($periodo == 'proximo'){ echo 'selected';} ?>>PRÓXIMO ANO</option>
+				<!--<option value="mesanterior" <?php if($periodo == 'mesanterior'){ echo 'selected';} ?>>Últimos Dois Meses</option>-->
 			</select>
 		</div>
-		
+		<!--
 		<div class="span3">
 			<label>Situação <i class="icon-info-sign tip-top" title="Lançamentos com situação específica ou todos."></i></label>
 			<select name="situacao" class="span12">
@@ -51,6 +65,7 @@
 				<option value="realizado" <?php if($situacao == 'realizado'){ echo 'selected';} ?>>Realizado</option>
 			</select>
 		</div>
+		-->
 	
 		<div class="span3">
 		<label>Tipo <i class="icon-info-sign tip-top" title="Lançamentos de entrada/saída ou todos."></i></label>
@@ -61,8 +76,8 @@
             </select>
         </div>
 		<div class="span2" >
-			&nbsp
-			<button type="submit" class="span12 btn btn-primary">Filtrar</button>
+			&nbsp;
+			<button type="submit" class="span12 btn btn-primary"><i class="icon-search icon-white"></i></button>
 		</div>
 		
 	</form>

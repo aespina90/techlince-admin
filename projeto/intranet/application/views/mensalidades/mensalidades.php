@@ -5,7 +5,7 @@
 <a href="#modalPgtoQuadra" data-toggle="modal" role="button" class="btn btn-success tip-bottom" title="Lançar Pagamento Quadra"><i class="icon-plus icon-white"></i> Lançar Pagamento</a>
 
 <a href="#modalDespesa" data-toggle="modal" role="button" class="btn btn-danger tip-bottom" title="Cadastrar nova despesa"><i class="icon-plus icon-white"></i> Lançar Desconto (Bônus)</a>
-<a href="<?php echo base_url()?>index.php/relatorios/mensalidades" class="btn btn-success" style="float:right;">Relatório</a>
+<a href="<?php echo base_url()?>index.php/relatorios/mensalidades" class="btn btn-warning" style="float:right;">Relatórios</a>
 
 <!-- <?php if($this->session->userdata('nivel') == 1){?>
 <a href="<?php echo base_url()?>index.php/mensalidades/mensalidadesPagas" class="btn btn-link"><i class="icon-money icon-white"></i> Mensalidades Pagas</a>

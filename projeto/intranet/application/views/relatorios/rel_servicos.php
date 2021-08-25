@@ -9,7 +9,7 @@
             </div>
             <div class="widget-content">
                 <ul class="site-stats">
-                    <li><a href="<?php echo base_url()?>index.php/relatorios/servicosRapid"><i class="icon-wrench"></i> <small>Todos os Serviços</small></a></li>
+                    <li><a href="<?php echo base_url()?>index.php/relatorios/servicosRapid"><i class="icon-wrench"></i> <small>Todas as Equipes</small></a></li>
                 </ul>
             </div>
         </div>
@@ -29,11 +29,11 @@
                     <form action="<?php echo base_url() ?>index.php/relatorios/servicosCustom" method="get">
                         <div class="span12 well">
                             <div class="span6">
-                                <label for="">Preço de:</label>
+                                <label for="">Dia de Jogo</label>
                                 <input type="text" name="precoInicial" class="span12 money" />
                             </div>
                             <div class="span6">
-                                <label for="">até:</label>
+                                <label for="">Responsável</label>
                                 <input type="text"  name="precoFinal" class="span12 money" />
                             </div>
                         </div>

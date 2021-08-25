@@ -29,8 +29,8 @@
                       <thead>
                           <tr>
                               <th style="font-size: 1.2em; padding: 5px;">Nome</th>
+                              <th style="font-size: 1.2em; padding: 5px;">Equipe</th>
                               <th style="font-size: 1.2em; padding: 5px;">Telefone</th>
-                              <th style="font-size: 1.2em; padding: 5px;">Atualizações</th>
                               <th style="font-size: 1.2em; padding: 5px;">Cadastro</th>
                           </tr>
                       </thead>
@@ -40,8 +40,8 @@
                               $dataCadastro = date('d/m/Y', strtotime($c->dataCadastro));
                               echo '<tr>';
                               echo '<td>' . $c->nomeCliente . '</td>';
+                              echo '<td>' . $c->apelido . '</td>';
                               echo '<td>' . $c->telefone . '</td>';
-                              if ($c->update == 0){echo "<td><center>Não Receber</center></td>";}else{echo "<td><center>Receber</center></td>";}'</td>';
                               echo '<td>' . $dataCadastro . '</td>';
                               echo '</tr>';
                           }

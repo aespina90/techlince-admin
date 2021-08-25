@@ -1,6 +1,6 @@
 <a href="<?php echo base_url()?>index.php/servicos/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Cadastrar Nova Equipe</a>
 
-<a href="<?php echo base_url()?>index.php/relatorios/servicos" class="btn btn-success" style="float:right;">Relatório</a>
+<a href="<?php echo base_url()?>index.php/relatorios/servicos" class="btn btn-warning" style="float:right;">Relatórios</a>
 <?php
 
 if(!$results){?>

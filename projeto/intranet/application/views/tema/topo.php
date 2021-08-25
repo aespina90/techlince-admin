@@ -98,6 +98,7 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
 ?>
 
 <i class="icon-time"></i> <span id="timer"></span></span></li>
+    <li class=""><a href="https://webmail.porcelanaball.com" title="Webmail" data-toggle="modal" target="_blank"> <span class="text"><i class="icon-envelope icon-white"></i> Webmail</span></a></li>
     <li class=""><a href="#modalSuporte" title="Ajuda e Suporte" data-toggle="modal"> <span class="text"><i class="icon-phone icon-white"></i> Suporte</span></a></li>
     <li class="">
     	<a title="Minha Conta" href="<?php echo base_url();?>index.php/mapos/minhaConta">
@@ -181,6 +182,7 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
       </ul>
     </li>
     
+    <!--
     <li class="submenu <?php if(isset($menuProdutos)){echo 'active open';};?>">
       <a href="#"><i class="icon icon-shopping-cart"></i> <span>Produtos</span> <span class="label"><i class="icon-chevron-down"></i></span></a>
       <ul>
@@ -188,19 +190,22 @@ echo utf8_encode(strftime( '%A, %d de ' .$uppercaseMonth. ' de %Y', strtotime('t
         <li><a href="<?php echo base_url()?>index.php/vendas">Vendas</a></li>
       </ul>
     </li>
+  -->
     
     <li class="<?php if(isset($menuFinanceiro)){echo 'active';};?>"><a href="<?php echo base_url()?>index.php/financeiro/lancamentos"><i class="icon icon-money"></i> <span>Financeiro</span></a></li>
 
     <?php if($this->session->userdata('nivel') == 1){?>
+    <!--  
     <li class="submenu <?php if(isset($menuRelatorios)){echo 'active open';};?>" >
       <a href="#"><i class="icon icon-list-alt"></i> <span>Relatórios</span> <span class="label"><i class="icon-chevron-down"></i></span></a>
       <ul>
-        <!--<li><a href="<?php echo base_url()?>index.php/relatorios/mensalidades">Pagamentos (Quadras)</a></li>-->
+        <li><a href="<?php echo base_url()?>index.php/relatorios/mensalidades">Pagamentos (Quadras)</a></li>
         <li><a href="<?php echo base_url()?>index.php/relatorios/produtos">Produtos </a></li>    
         <li><a href="<?php echo base_url()?>index.php/relatorios/vendas">Vendas </a></li>
         <li><a href="<?php echo base_url()?>index.php/relatorios/financeiro">Financeiro </a></li>   
       </ul>
     </li>
+    -->
     <li class="submenu <?php if(isset($menuConfiguracoes)){echo 'active open';};?>">
       <a href="#"><i class="icon icon-cog"></i> <span>Configurações</span> <span class="label"><i class="icon-chevron-down"></i></span></a>
       <ul>
@@ -318,7 +323,7 @@ else{?>
 </div>
 <!--Footer-part-->
 <div class="row-fluid">
-  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.08.11</div>
+  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.08.23</div>
 <script>
     var d = new Date();
     var n = d.getFullYear();

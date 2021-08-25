@@ -1,7 +1,7 @@
 <a href="<?php echo base_url();?>index.php/clientes/adicionar" class="btn btn-success"><i class="icon-plus icon-white"></i> Novo Cliente</a>
 <a href="<?php echo base_url();?>index.php/clientes/desativados" class="btn btn-link"> Clientes Desativados</a>
 
-<a href="<?php echo base_url()?>index.php/relatorios/clientes" class="btn btn-success" style="float:right;">Relatório</a>
+<a href="<?php echo base_url()?>index.php/relatorios/clientes" class="btn btn-warning" style="float:right;">Relatórios</a>
 
 <?php
 if(!$results){?>
@@ -23,7 +23,6 @@ if(!$results){?>
                         <th>Apelido</th>
                         <th>E-mail</th>
                         <th>Telefone</th>
-                        <th>Atualizações</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -59,7 +58,6 @@ if(!$results){?>
         <th>Apelido</th>
         <th>E-mail</th>
         <th>Telefone</th>
-        <th>Atualizações</th>
         <th>Ações</th>
         </tr>
     </thead>
@@ -70,7 +68,6 @@ if(!$results){?>
             echo '<td><b>'.$r->apelido.'</b></td>';
             echo '<td>'.$r->email.'</td>';
             echo '<td><center>'.$r->telefone.'</center></td>';
-            if ($r->update == 0){echo "<td><center>Não Receber</center></td>";}else{echo "<td><center>Receber</center></td>";}'</td>';
             echo '<td>
             		<a href="'.base_url().'index.php/clientes/visualizar/'.$r->idClientes.'" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>
                     

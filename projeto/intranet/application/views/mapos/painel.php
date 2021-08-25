@@ -63,8 +63,7 @@ if (isset($_POST['fecharCaixa'])) {
     </div>
   </div>
 -->
-  <iframe title="HORÁRIOS QUADRAS" src="https://calendar.google.com/calendar/embed?height=800&amp;wkst=2&amp;bgcolor=%23c5ffb8&amp;ctz=America%2FSao_Paulo&amp;src=Y183cXVmdG5ybnAxYmI1ZGZkcTZmYTNkcjNja0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;src=Y19iMGg1dHV0MGpvMDhiMm82YWtqODBraWZzY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;src=Y191aHR1MG9wMnY1NjJobHJxZG83cGU0cWZhOEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%23b7b7b7&amp;color=%2333B679&amp;color=%23F6BF26&amp;mode=MONTH&amp;title=HOR%C3%81RIOS%20QUADRAS" width="100%" height="800" frameborder="0" scrolling="yes"></iframe>
-
+  <iframe title="HORÁRIOS QUADRAS" src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ceffc2&ctz=America%2FSao_Paulo&src=Y183cXVmdG5ybnAxYmI1ZGZkcTZmYTNkcjNja0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19iMGg1dHV0MGpvMDhiMm82YWtqODBraWZzY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y191aHR1MG9wMnY1NjJobHJxZG83cGU0cWZhOEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23b7b7b7&color=%2333B679&color=%23F6BF26&title=HOR%C3%81RIOS%20QUADRAS" style="border:double 1px #D3D3D3" width="100%" height="800" frameborder="5px" scrolling="yes"></iframe>
 
 <!--End-Action boxes-->
 <div class="row-fluid" style="margin-top: 0">
