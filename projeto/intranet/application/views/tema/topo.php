@@ -323,7 +323,7 @@ else{?>
 </div>
 <!--Footer-part-->
 <div class="row-fluid">
-  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.08.23</div>
+  <div id="footer" class="span12" style="color:#757575;"> <span id="year"></span> &copy; AEspina | <img src="<?php echo base_url();?>assets/img/whatsapp.png" style="margin-top: -1px"> (11) 97431-3668 - suporte@techlince.com | Versão 21.08.30</div>
 <script>
     var d = new Date();
     var n = d.getFullYear();
